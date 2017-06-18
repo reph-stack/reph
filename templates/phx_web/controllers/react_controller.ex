@@ -1,4 +1,4 @@
-defmodule <%= web_namespace %>.PageController do
+defmodule <%= web_namespace %>.ReactController do
   use <%= web_namespace %>, :controller
 
   def index(conn, _params) do

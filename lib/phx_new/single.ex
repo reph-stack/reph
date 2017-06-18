@@ -53,14 +53,14 @@ defmodule Phx.New.Single do
   ]
 
   template :html, [
-    {:eex, "phx_web/controllers/page_controller.ex",         :project, "lib/:app/web/controllers/page_controller.ex"},
+    {:eex, "phx_web/controllers/react_controller.ex",         :project, "lib/:app/web/controllers/react_controller.ex"},
     {:eex, "phx_web/templates/layout/app.html.eex",          :project, "lib/:app/web/templates/layout/app.html.eex"},
-    {:eex, "phx_web/templates/page/index.html.eex",          :project, "lib/:app/web/templates/page/index.html.eex"},
+    {:eex, "phx_web/templates/react/index.html.eex",          :project, "lib/:app/web/templates/react/index.html.eex"},
     {:eex, "phx_web/views/layout_view.ex",                   :project, "lib/:app/web/views/layout_view.ex"},
-    {:eex, "phx_web/views/page_view.ex",                     :project, "lib/:app/web/views/page_view.ex"},
-    {:eex, "phx_test/controllers/page_controller_test.exs",  :project, "test/:app/web/controllers/page_controller_test.exs"},
+    {:eex, "phx_web/views/react_view.ex",                     :project, "lib/:app/web/views/react_view.ex"},
+    {:eex, "phx_test/controllers/react_controller_test.exs",  :project, "test/:app/web/controllers/react_controller_test.exs"},
     {:eex, "phx_test/views/layout_view_test.exs",            :project, "test/:app/web/views/layout_view_test.exs"},
-    {:eex, "phx_test/views/page_view_test.exs",              :project, "test/:app/web/views/page_view_test.exs"},
+    {:eex, "phx_test/views/react_view_test.exs",              :project, "test/:app/web/views/react_view_test.exs"},
   ]
 
   template :bare, [

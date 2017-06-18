@@ -49,18 +49,18 @@ defmodule Mix.Tasks.Phx.NewTest do
       end
       assert_file "phx_blog/lib/phx_blog/web/endpoint.ex", ~r/defmodule PhxBlog.Web.Endpoint do/
 
-      assert_file "phx_blog/test/phx_blog/web/controllers/page_controller_test.exs"
-      assert_file "phx_blog/test/phx_blog/web/views/page_view_test.exs"
+      assert_file "phx_blog/test/phx_blog/web/controllers/react_controller_test.exs"
+      assert_file "phx_blog/test/phx_blog/web/views/react_view_test.exs"
       assert_file "phx_blog/test/phx_blog/web/views/error_view_test.exs"
       assert_file "phx_blog/test/phx_blog/web/views/layout_view_test.exs"
       assert_file "phx_blog/test/support/conn_case.ex"
       assert_file "phx_blog/test/test_helper.exs"
 
-      assert_file "phx_blog/lib/phx_blog/web/controllers/page_controller.ex",
-                  ~r/defmodule PhxBlog.Web.PageController/
+      assert_file "phx_blog/lib/phx_blog/web/controllers/react_controller.ex",
+                  ~r/defmodule PhxBlog.Web.ReactController/
 
-      assert_file "phx_blog/lib/phx_blog/web/views/page_view.ex",
-                  ~r/defmodule PhxBlog.Web.PageView/
+      assert_file "phx_blog/lib/phx_blog/web/views/React_view.ex",
+                  ~r/defmodule PhxBlog.Web.ReactView/
 
       assert_file "phx_blog/lib/phx_blog/web/router.ex", "defmodule PhxBlog.Web.Router"
       assert_file "phx_blog/lib/phx_blog/web/web.ex", "defmodule PhxBlog.Web"
@@ -171,14 +171,14 @@ defmodule Mix.Tasks.Phx.NewTest do
       assert File.exists?("phx_blog/lib/phx_blog/web/controllers")
       assert File.exists?("phx_blog/lib/phx_blog/web/views")
 
-      refute File.exists? "phx_blog/test/web/controllers/pager_controller_test.exs"
+      refute File.exists? "phx_blog/test/web/controllers/react_controller_test.exs"
       refute File.exists? "phx_blog/test/views/layout_view_test.exs"
-      refute File.exists? "phx_blog/test/views/page_view_test.exs"
-      refute File.exists? "phx_blog/lib/phx_blog/web/controllers/page_controller.ex"
+      refute File.exists? "phx_blog/test/views/react_view_test.exs"
+      refute File.exists? "phx_blog/lib/phx_blog/web/controllers/react_controller.ex"
       refute File.exists? "phx_blog/lib/phx_blog/web/templates/layout/app.html.eex"
-      refute File.exists? "phx_blog/lib/phx_blog/web/templates/page/index.html.eex"
+      refute File.exists? "phx_blog/lib/phx_blog/web/templates/react/index.html.eex"
       refute File.exists? "phx_blog/lib/phx_blog/web/views/layout_view.ex"
-      refute File.exists? "phx_blog/lib/phx_blog/web/views/page_view.ex"
+      refute File.exists? "phx_blog/lib/phx_blog/web/views/react_view.ex"
 
       assert_file "phx_blog/mix.exs", &refute(&1 =~ ~r":phoenix_html")
       assert_file "phx_blog/mix.exs", &refute(&1 =~ ~r":phoenix_live_reload")

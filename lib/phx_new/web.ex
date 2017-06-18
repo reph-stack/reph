@@ -48,14 +48,14 @@ defmodule Phx.New.Web do
   ]
 
   template :html, [
-    {:eex,  "phx_web/controllers/page_controller.ex",         :web, "lib/:web_app/controllers/page_controller.ex"},
+    {:eex,  "phx_web/controllers/react_controller.ex",         :web, "lib/:web_app/controllers/react_controller.ex"},
     {:eex,  "phx_web/templates/layout/app.html.eex",          :web, "lib/:web_app/templates/layout/app.html.eex"},
-    {:eex,  "phx_web/templates/page/index.html.eex",          :web, "lib/:web_app/templates/page/index.html.eex"},
+    {:eex,  "phx_web/templates/react/index.html.eex",          :web, "lib/:web_app/templates/react/index.html.eex"},
     {:eex,  "phx_web/views/layout_view.ex",                   :web, "lib/:web_app/views/layout_view.ex"},
-    {:eex,  "phx_web/views/page_view.ex",                     :web, "lib/:web_app/views/page_view.ex"},
-    {:eex,  "phx_test/controllers/page_controller_test.exs",  :web, "test/:web_app/controllers/page_controller_test.exs"},
+    {:eex,  "phx_web/views/react_view.ex",                     :web, "lib/:web_app/views/react_view.ex"},
+    {:eex,  "phx_test/controllers/react_controller_test.exs",  :web, "test/:web_app/controllers/react_controller_test.exs"},
     {:eex,  "phx_test/views/layout_view_test.exs",            :web, "test/:web_app/views/layout_view_test.exs"},
-    {:eex,  "phx_test/views/page_view_test.exs",              :web, "test/:web_app/views/page_view_test.exs"},
+    {:eex,  "phx_test/views/react_view_test.exs",              :web, "test/:web_app/views/react_view_test.exs"},
   ]
 
   template :bare, [

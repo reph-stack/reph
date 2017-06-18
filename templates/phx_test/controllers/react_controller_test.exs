@@ -1,4 +1,4 @@
-defmodule <%= web_namespace %>.PageControllerTest do
+defmodule <%= web_namespace %>.ReactControllerTest do
   use <%= web_namespace %>.ConnCase
 
   test "GET /", %{conn: conn} do
