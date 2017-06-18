@@ -80,7 +80,6 @@ defmodule Phx.New.Generator do
     db           = Keyword.get(opts, :database, "postgres")
     ecto         = Keyword.get(opts, :ecto, true)
     html         = Keyword.get(opts, :html, true)
-    brunch       = Keyword.get(opts, :brunch, true)
     phoenix_path = phoenix_path(project)
 
     # We lowercase the database name because according to the
@@ -116,7 +115,6 @@ defmodule Phx.New.Generator do
       prod_secret_key_base: random_string(64),
       signing_salt: random_string(8),
       in_umbrella: project.in_umbrella?,
-      brunch: brunch,
       ecto: ecto,
       html: html,
       adapter_app: adapter_app,

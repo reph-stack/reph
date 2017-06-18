@@ -38,10 +38,6 @@ defmodule Phx.New.Project do
     Keyword.fetch!(binding, :html)
   end
 
-  def brunch?(%Project{binding: binding}) do
-    Keyword.fetch!(binding, :brunch)
-  end
-
   def join_path(%Project{} = project, location, path)
       when location in [:project, :app, :web] do
 

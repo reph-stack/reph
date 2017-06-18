@@ -87,11 +87,7 @@ defmodule Phx.New.Web do
 
     if Project.html?(project), do: gen_html(project)
 
-    case {Project.brunch?(project), Project.html?(project)} do
-      {true, _}      -> gen_brunch(project)
-      {false, true}  -> gen_static(project)
-      {false, false} -> gen_bare(project)
-    end
+    gen_brunch(project)
 
     project
   end
@@ -100,20 +96,9 @@ defmodule Phx.New.Web do
     copy_from project, __MODULE__, :html
   end
 
-  defp gen_static(%Project{web_path: web_path} = project) do
-    copy_from project, __MODULE__, :static
-    create_file Path.join(web_path, "priv/static/js/phoenix.js"), phoenix_js_text()
-    create_file Path.join(web_path, "priv/static/images/phoenix.png"), phoenix_png_text()
-    create_file Path.join(web_path, "priv/static/favicon.ico"), phoenix_favicon_text()
-  end
-
   defp gen_brunch(%Project{web_path: web_path} = project) do
     copy_from project, __MODULE__, :brunch
     create_file Path.join(web_path, "assets/static/images/phoenix.png"), phoenix_png_text()
     create_file Path.join(web_path, "assets/static/favicon.ico"), phoenix_favicon_text()
-  end
-
-  defp gen_bare(%Project{} = project) do
-    copy_from project, __MODULE__, :bare
   end
 end

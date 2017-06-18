@@ -183,18 +183,7 @@ defmodule Mix.Tasks.Phx.New.UmbrellaTest do
 
   test "new without defaults" do
     in_tmp "new without defaults", fn ->
-      Mix.Tasks.Phx.New.run([@app, "--umbrella", "--no-html", "--no-brunch", "--no-ecto"])
-
-      # No Brunch
-      refute File.read!(web_path(@app, ".gitignore")) |> String.contains?("/node_modules")
-      assert_file web_path(@app, "config/dev.exs"), ~r/watchers: \[\]/
-
-      # No Brunch & No Html
-      refute_file web_path(@app, "priv/static/css/app.css")
-      refute_file web_path(@app, "priv/static/favicon.ico")
-      refute_file web_path(@app, "priv/static/images/phoenix.png")
-      refute_file web_path(@app, "priv/static/js/phoenix.js")
-      refute_file web_path(@app, "priv/static/js/app.js")
+      Mix.Tasks.Phx.New.run([@app, "--umbrella", "--no-html", "--no-ecto"])
 
       # No Ecto
       config = ~r/config :phx_umb, PhxUmb.Repo,/
@@ -235,19 +224,6 @@ defmodule Mix.Tasks.Phx.New.UmbrellaTest do
                   &refute(&1 =~ ~r"Phoenix.LiveReloader.Socket")
       assert_file web_path(@app, "lib/#{@app}_web/views/error_view.ex"), ~r".json"
       assert_file web_path(@app, "lib/#{@app}_web/router.ex"), &refute(&1 =~ ~r"pipeline :browser")
-    end
-  end
-
-  test "new with no_brunch" do
-    in_tmp "new with no_brunch", fn ->
-      Mix.Tasks.Phx.New.run([@app, "--umbrella", "--no-brunch"])
-
-      assert_file web_path(@app, ".gitignore")
-      assert_file web_path(@app, "priv/static/css/app.css")
-      assert_file web_path(@app, "priv/static/favicon.ico")
-      assert_file web_path(@app, "priv/static/images/phoenix.png")
-      assert_file web_path(@app, "priv/static/js/phoenix.js")
-      assert_file web_path(@app, "priv/static/js/app.js")
     end
   end
 

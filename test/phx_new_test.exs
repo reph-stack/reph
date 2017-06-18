@@ -136,18 +136,7 @@ defmodule Mix.Tasks.Phx.NewTest do
 
   test "new without defaults" do
     in_tmp "new without defaults", fn ->
-      Mix.Tasks.Phx.New.run([@app_name, "--no-html", "--no-brunch", "--no-ecto"])
-
-      # No Brunch
-      refute File.read!("phx_blog/.gitignore") |> String.contains?("/node_modules")
-      assert_file "phx_blog/config/dev.exs", ~r/watchers: \[\]/
-
-      # No Brunch & No Html
-      refute_file "phx_blog/priv/static/css/app.css"
-      refute_file "phx_blog/priv/static/favicon.ico"
-      refute_file "phx_blog/priv/static/images/phoenix.png"
-      refute_file "phx_blog/priv/static/js/phoenix.js"
-      refute_file "phx_blog/priv/static/js/app.js"
+      Mix.Tasks.Phx.New.run([@app_name, "--no-html", "--no-ecto"])
 
       # No Ecto
       config = ~r/config :phx_blog, PhxBlog.Repo,/
@@ -188,19 +177,6 @@ defmodule Mix.Tasks.Phx.NewTest do
                   &refute(&1 =~ ~r"Phoenix.LiveReloader.Socket")
       assert_file "phx_blog/lib/phx_blog/web/views/error_view.ex", ~r".json"
       assert_file "phx_blog/lib/phx_blog/web/router.ex", &refute(&1 =~ ~r"pipeline :browser")
-    end
-  end
-
-  test "new with no_brunch" do
-    in_tmp "new with no_brunch", fn ->
-      Mix.Tasks.Phx.New.run([@app_name, "--no-brunch"])
-
-      assert_file "phx_blog/.gitignore"
-      assert_file "phx_blog/priv/static/css/app.css"
-      assert_file "phx_blog/priv/static/favicon.ico"
-      assert_file "phx_blog/priv/static/images/phoenix.png"
-      assert_file "phx_blog/priv/static/js/phoenix.js"
-      assert_file "phx_blog/priv/static/js/app.js"
     end
   end
 

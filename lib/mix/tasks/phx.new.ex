@@ -24,11 +24,6 @@ defmodule Mix.Tasks.Phx.New do
     * `--database` - specify the database adapter for ecto.
       Values can be `postgres` or `mysql`. Defaults to `postgres`
 
-    * `--no-brunch` - do not generate brunch files
-      for static asset building. When choosing this
-      option, you will need to manually handle
-      JavaScript dependencies if building HTML apps
-
     * `--no-ecto` - do not generate Ecto files.
 
     * `--no-html` - do not generate HTML views.
@@ -79,7 +74,7 @@ defmodule Mix.Tasks.Phx.New do
   @version Mix.Project.config[:version]
   @shortdoc "Creates a new Phoenix v#{@version} application"
 
-  @switches [brunch: :boolean, ecto: :boolean,
+  @switches [ecto: :boolean,
              app: :string, module: :string, web_module: :string,
              database: :string, binary_id: :boolean, html: :boolean,
              umbrella: :boolean]
@@ -141,7 +136,7 @@ defmodule Mix.Tasks.Phx.New do
           brunch_pending = install_brunch(install?)
           Task.await(compile, :infinity)
 
-          if Project.brunch?(project) and !System.find_executable("npm") do
+          if !System.find_executable("npm") do
             print_brunch_info(project, generator)
           end
 
@@ -187,8 +182,6 @@ defmodule Mix.Tasks.Phx.New do
     node.js, which includes npm, can be found at http://nodejs.org.
 
     The command listed next expect that you have npm available.
-    If you don't want brunch.io, you can re-run this generator
-    with the --no-brunch option.
     """
   end
 
