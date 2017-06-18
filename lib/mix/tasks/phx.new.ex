@@ -79,7 +79,7 @@ defmodule Mix.Tasks.Phx.New do
   @version Mix.Project.config[:version]
   @shortdoc "Creates a new Phoenix v#{@version} application"
 
-  @switches [dev: :boolean, brunch: :boolean, ecto: :boolean,
+  @switches [brunch: :boolean, ecto: :boolean,
              app: :string, module: :string, web_module: :string,
              database: :string, binary_id: :boolean, html: :boolean,
              umbrella: :boolean]

@@ -3,8 +3,6 @@ defmodule Phx.New.Generator do
   import Mix.Generator
   alias Phx.New.{Project}
 
-  @phoenix Path.expand("../..", __DIR__)
-
   @callback prepare_project(Project.t) :: Project.t
   @callback generate(Project.t) :: Project.t
 
@@ -83,8 +81,7 @@ defmodule Phx.New.Generator do
     ecto         = Keyword.get(opts, :ecto, true)
     html         = Keyword.get(opts, :html, true)
     brunch       = Keyword.get(opts, :brunch, true)
-    dev          = Keyword.get(opts, :dev, false)
-    phoenix_path = phoenix_path(project, dev)
+    phoenix_path = phoenix_path(project)
 
     # We lowercase the database name because according to the
     # SQL spec, they are case insensitive unless quoted, which
@@ -111,7 +108,7 @@ defmodule Phx.New.Generator do
       web_namespace: inspect(project.web_namespace),
       phoenix_dep: phoenix_dep(phoenix_path),
       phoenix_path: phoenix_path,
-      phoenix_brunch_path: phoenix_brunch_path(project, dev),
+      phoenix_brunch_path: phoenix_brunch_path(project),
       phoenix_html_brunch_path: phoenix_html_brunch_path(project),
       phoenix_static_path: phoenix_static_path(phoenix_path),
       pubsub_server: pubsub_server,
@@ -205,34 +202,13 @@ defmodule Phx.New.Generator do
     end
   end
 
-  defp phoenix_path(%Project{} = project, true) do
-    absolute = Path.expand(project.project_path)
-    relative = Path.relative_to(absolute, @phoenix)
-
-    if absolute == relative do
-      Mix.raise "--dev projects must be generated inside Phoenix directory"
-    end
-
-    project
-    |> phoenix_path_prefix()
-    |> Path.join(relative)
-    |> Path.split()
-    |> Enum.map(fn _ -> ".." end)
-    |> Path.join()
-  end
-  defp phoenix_path(%Project{}, false) do
+  defp phoenix_path(%Project{}) do
     "deps/phoenix"
   end
-  defp phoenix_path_prefix(%Project{in_umbrella?: true}), do: "../../../"
-  defp phoenix_path_prefix(%Project{in_umbrella?: false}), do: ".."
 
-  defp phoenix_brunch_path(%Project{in_umbrella?: true}, true = _dev),
-    do: "../../../../../"
-  defp phoenix_brunch_path(%Project{in_umbrella?: true}, false = _dev),
+  defp phoenix_brunch_path(%Project{in_umbrella?: true}),
     do: "../../../deps/phoenix"
-  defp phoenix_brunch_path(%Project{in_umbrella?: false}, true = _dev),
-    do: "../../../"
-  defp phoenix_brunch_path(%Project{in_umbrella?: false}, false = _dev),
+  defp phoenix_brunch_path(%Project{in_umbrella?: false}),
     do: "../deps/phoenix"
 
   defp phoenix_html_brunch_path(%Project{in_umbrella?: true}),
