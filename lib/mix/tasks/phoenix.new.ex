@@ -92,9 +92,9 @@ defmodule Mix.Tasks.Phoenix.New do
   end
 
   # Embed missing files from Phoenix static.
-  embed_text :phoenix_js, from_file: Path.expand("../../../../priv/static/phoenix.js", __DIR__)
-  embed_text :phoenix_png, from_file: Path.expand("../../../../priv/static/phoenix.png", __DIR__)
-  embed_text :phoenix_favicon, from_file: Path.expand("../../../../priv/static/favicon.ico", __DIR__)
+  embed_text :phoenix_js, from_file: Path.expand("../../../priv/static/phoenix.js", __DIR__)
+  embed_text :phoenix_png, from_file: Path.expand("../../../priv/static/phoenix.png", __DIR__)
+  embed_text :phoenix_favicon, from_file: Path.expand("../../../priv/static/favicon.ico", __DIR__)
 
   @moduledoc """
   Creates a new Phoenix project.
