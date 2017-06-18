@@ -85,10 +85,8 @@ defmodule Phx.New.Web do
     copy_from project, __MODULE__, :new
     copy_from project, __MODULE__, :gettext
 
-    if Project.html?(project), do: gen_html(project)
-
+    gen_html(project)
     gen_brunch(project)
-
     project
   end
 

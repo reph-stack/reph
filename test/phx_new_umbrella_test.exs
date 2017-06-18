@@ -183,7 +183,7 @@ defmodule Mix.Tasks.Phx.New.UmbrellaTest do
 
   test "new without defaults" do
     in_tmp "new without defaults", fn ->
-      Mix.Tasks.Phx.New.run([@app, "--umbrella", "--no-html", "--no-ecto"])
+      Mix.Tasks.Phx.New.run([@app, "--umbrella", "--no-ecto"])
 
       # No Ecto
       config = ~r/config :phx_umb, PhxUmb.Repo,/
@@ -202,28 +202,6 @@ defmodule Mix.Tasks.Phx.New.UmbrellaTest do
       assert_file web_path(@app, "config/dev.exs"), &refute(&1 =~ config)
       assert_file web_path(@app, "config/test.exs"), &refute(&1 =~ config)
       assert_file web_path(@app, "config/prod.secret.exs"), &refute(&1 =~ config)
-
-      # No HTML
-      assert File.exists?(web_path(@app, "test/#{@app}_web/controllers"))
-      assert File.exists?(web_path(@app, "lib/#{@app}_web/controllers"))
-      assert File.exists?(web_path(@app, "lib/#{@app}_web/views"))
-      refute File.exists?(web_path(@app, "test/controllers/react_controller_test.exs"))
-      refute File.exists?(web_path(@app, "test/views/layout_view_test.exs"))
-      refute File.exists?(web_path(@app, "test/views/react_view_test.exs"))
-      refute File.exists?(web_path(@app, "lib/#{@app}_web/controllers/react_controller.ex"))
-      refute File.exists?(web_path(@app, "lib/#{@app}_web/templates/layout/app.html.eex"))
-      refute File.exists?(web_path(@app, "lib/#{@app}_web/templates/react/index.html.eex"))
-      refute File.exists?(web_path(@app, "lib/#{@app}_web/views/layout_view.ex"))
-      refute File.exists?(web_path(@app, "lib/#{@app}_web/views/react_view.ex"))
-
-      assert_file web_path(@app, "mix.exs"), &refute(&1 =~ ~r":phoenix_html")
-      assert_file web_path(@app, "mix.exs"), &refute(&1 =~ ~r":phoenix_live_reload")
-      assert_file web_path(@app, "lib/#{@app}_web/endpoint.ex"),
-                  &refute(&1 =~ ~r"Phoenix.LiveReloader")
-      assert_file web_path(@app, "lib/#{@app}_web/endpoint.ex"),
-                  &refute(&1 =~ ~r"Phoenix.LiveReloader.Socket")
-      assert_file web_path(@app, "lib/#{@app}_web/views/error_view.ex"), ~r".json"
-      assert_file web_path(@app, "lib/#{@app}_web/router.ex"), &refute(&1 =~ ~r"pipeline :browser")
     end
   end
 

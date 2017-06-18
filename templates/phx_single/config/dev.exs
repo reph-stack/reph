@@ -30,7 +30,7 @@ config :<%= app_name %>, <%= endpoint_module %>,
 # configured to run both http and https servers on
 # different ports.
 
-<%= if html do %># Watch static and templates for browser reloading.
+# Watch static and templates for browser reloading.
 config :<%= app_name %>, <%= endpoint_module %>,
   live_reload: [
     patterns: [
@@ -41,7 +41,7 @@ config :<%= app_name %>, <%= endpoint_module %>,
     ]
   ]
 
-<% end %># Do not include metadata nor timestamps in development logs
+# Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
 
 # Set a higher stacktrace during development. Avoid configuring such

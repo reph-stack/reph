@@ -34,10 +34,6 @@ defmodule Phx.New.Project do
     Keyword.fetch!(binding, :ecto)
   end
 
-  def html?(%Project{binding: binding}) do
-    Keyword.fetch!(binding, :html)
-  end
-
   def join_path(%Project{} = project, location, path)
       when location in [:project, :app, :web] do
 

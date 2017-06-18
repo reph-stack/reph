@@ -106,10 +106,8 @@ defmodule Phx.New.Single do
     copy_from project, __MODULE__, :gettext
 
     if Project.ecto?(project), do: gen_ecto(project)
-    if Project.html?(project), do: gen_html(project)
-
+    gen_html(project)
     gen_brunch(project)
-
     project
   end
 

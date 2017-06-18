@@ -30,7 +30,7 @@ config :<%= web_app_name %>, <%= endpoint_module %>,
 # configured to run both http and https servers on
 # different ports.
 
-<%= if html do %># Watch static and templates for browser reloading.
+# Watch static and templates for browser reloading.
 config :<%= web_app_name %>, <%= endpoint_module %>,
   live_reload: [
     patterns: [
@@ -40,5 +40,3 @@ config :<%= web_app_name %>, <%= endpoint_module %>,
       ~r{lib/<%= web_app_name %>/templates/.*(eex)$}
     ]
   ]
-
-<% end %>

@@ -11,7 +11,7 @@
 //
 // If you no longer want to use a dependency, remember
 // to also remove its path from "config.paths.watched".
-<%= if html do %>import "phoenix_html"<% end %>
+import "phoenix_html"
 
 // Import local files
 //

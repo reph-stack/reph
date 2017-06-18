@@ -79,7 +79,6 @@ defmodule Phx.New.Generator do
   def put_binding(%Project{opts: opts} = project) do
     db           = Keyword.get(opts, :database, "postgres")
     ecto         = Keyword.get(opts, :ecto, true)
-    html         = Keyword.get(opts, :html, true)
     phoenix_path = phoenix_path(project)
 
     # We lowercase the database name because according to the
@@ -116,7 +115,6 @@ defmodule Phx.New.Generator do
       signing_salt: random_string(8),
       in_umbrella: project.in_umbrella?,
       ecto: ecto,
-      html: html,
       adapter_app: adapter_app,
       adapter_module: adapter_module,
       adapter_config: adapter_config,
