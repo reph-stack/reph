@@ -6,6 +6,9 @@ defmodule Phx.New.Generator do
   @callback prepare_project(Project.t) :: Project.t
   @callback generate(Project.t) :: Project.t
 
+  @phoenix_path "deps/phoenix"
+  @phoenix_dep ~s[{:phoenix, "~> 1.3.0-rc"}]
+
   defmacro __using__(_env) do
     quote do
       @behaviour unquote(__MODULE__)
@@ -77,9 +80,8 @@ defmodule Phx.New.Generator do
   end
 
   def put_binding(%Project{opts: opts} = project) do
-    db           = Keyword.get(opts, :database, "postgres")
-    ecto         = Keyword.get(opts, :ecto, true)
-    phoenix_path = phoenix_path(project)
+    db              = Keyword.get(opts, :database, "postgres")
+    ecto            = Keyword.get(opts, :ecto, true)
 
     # We lowercase the database name because according to the
     # SQL spec, they are case insensitive unless quoted, which
@@ -104,11 +106,11 @@ defmodule Phx.New.Generator do
       web_app_name: project.web_app,
       endpoint_module: inspect(Module.concat(project.web_namespace, Endpoint)),
       web_namespace: inspect(project.web_namespace),
-      phoenix_dep: phoenix_dep(phoenix_path),
-      phoenix_path: phoenix_path,
+      phoenix_dep: @phoenix_dep,
+      phoenix_path: @phoenix_path,
       phoenix_brunch_path: phoenix_brunch_path(project),
       phoenix_html_brunch_path: phoenix_html_brunch_path(project),
-      phoenix_static_path: phoenix_static_path(phoenix_path),
+      phoenix_static_path: @phoenix_path,
       pubsub_server: pubsub_server,
       secret_key_base: random_string(64),
       prod_secret_key_base: random_string(64),
@@ -198,10 +200,6 @@ defmodule Phx.New.Generator do
     end
   end
 
-  defp phoenix_path(%Project{}) do
-    "deps/phoenix"
-  end
-
   defp phoenix_brunch_path(%Project{in_umbrella?: true}),
     do: "../../../deps/phoenix"
   defp phoenix_brunch_path(%Project{in_umbrella?: false}),
@@ -211,13 +209,6 @@ defmodule Phx.New.Generator do
     do: "../../../deps/phoenix_html"
   defp phoenix_html_brunch_path(%Project{in_umbrella?: false}),
     do: "../deps/phoenix_html"
-
-  defp phoenix_dep("deps/phoenix"), do: ~s[{:phoenix, "~> 1.3.0-rc"}]
-  # defp phoenix_dep("deps/phoenix"), do: ~s[{:phoenix, github: "phoenixframework/phoenix", override: true}]
-  defp phoenix_dep(path), do: ~s[{:phoenix, path: #{inspect path}, override: true}]
-
-  defp phoenix_static_path("deps/phoenix"), do: "deps/phoenix"
-  defp phoenix_static_path(path), do: Path.join("..", path)
 
   defp random_string(length) do
     :crypto.strong_rand_bytes(length) |> Base.encode64 |> binary_part(0, length)
