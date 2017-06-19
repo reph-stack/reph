@@ -62,7 +62,7 @@ defmodule Mix.Tasks.Reph.New do
   alias Reph.{Generator, Project, Single, Umbrella, Web, Ecto}
 
   @version Mix.Project.config[:version]
-  @shortdoc "Creates a new Phoenix v#{@version} application"
+  @shortdoc "Creates a new Reph v#{@version} application"
 
   @switches [ecto: :boolean,
              app: :string, module: :string, web_module: :string,
@@ -70,7 +70,7 @@ defmodule Mix.Tasks.Reph.New do
              umbrella: :boolean]
 
   def run([version]) when version in ~w(-v --version) do
-    Mix.shell.info "Phoenix v#{@version}"
+    Mix.shell.info "Reph v#{@version}"
   end
   def run(argv) do
     elixir_version_check!()
@@ -308,7 +308,7 @@ defmodule Mix.Tasks.Reph.New do
 
   defp elixir_version_check! do
     unless Version.match?(System.version, "~> 1.4") do
-      Mix.raise "Phoenix v#{@version} requires at least Elixir v1.4.\n " <>
+      Mix.raise "Reph v#{@version} requires at least Elixir v1.4.\n " <>
                 "You have #{System.version()}. Please update accordingly"
     end
   end

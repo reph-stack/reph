@@ -339,25 +339,6 @@ defmodule Mix.Tasks.Reph.New.UmbrellaTest do
     end
   end
 
-  describe "ecto task" do
-    test "can only be run within an umbrella app dir", %{tmp_dir: tmp_dir} do
-      in_tmp tmp_dir, fn ->
-        cwd = File.cwd!()
-        umbrella_path = root_path(@app)
-        Mix.Tasks.Reph.New.run([@app, "--umbrella"])
-        flush()
-
-        for dir <- [cwd, umbrella_path] do
-          File.cd!(dir, fn ->
-            assert_raise Mix.Error, ~r"The ecto task can only be run within an umbrella's apps directory", fn ->
-              Mix.Tasks.Reph.New.Ecto.run(["valid"])
-            end
-          end)
-        end
-      end
-    end
-  end
-
   describe "web task" do
     test "can only be run within an umbrella app dir", %{tmp_dir: tmp_dir} do
       in_tmp tmp_dir, fn ->

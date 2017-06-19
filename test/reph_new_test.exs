@@ -16,7 +16,7 @@ defmodule Mix.Tasks.Reph.NewTest do
 
   test "returns the version" do
     Mix.Tasks.Reph.New.run(["-v"])
-    assert_received {:mix_shell, :info, ["Phoenix v" <> _]}
+    assert_received {:mix_shell, :info, ["Reph v" <> _]}
   end
 
   test "new with defaults" do
