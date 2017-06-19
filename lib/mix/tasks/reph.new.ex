@@ -1,10 +1,10 @@
-defmodule Mix.Tasks.Phx.New do
+defmodule Mix.Tasks.Reph.New do
   @moduledoc """
-  Creates a new Phoenix project.
+  Creates a new Reph project.
 
   It expects the path of the project as an argument.
 
-      mix phx.new PATH [--module MODULE] [--app APP]
+      mix reph.new PATH [--module MODULE] [--app APP]
 
   A project at the given PATH will be created. The
   application name and module name will be retrieved
@@ -38,15 +38,15 @@ defmodule Mix.Tasks.Phx.New do
 
   ## Examples
 
-      mix phx.new hello_world
+      mix reph.new hello_world
 
   Is equivalent to:
 
-      mix phx.new hello_world --module HelloWorld
+      mix reph.new hello_world --module HelloWorld
 
   As an umbrella:
 
-      mix phx.new hello --umbrella
+      mix reph.new hello --umbrella
 
   Would generate the following directory structure and modules:
 
@@ -75,7 +75,7 @@ defmodule Mix.Tasks.Phx.New do
   def run(argv) do
     elixir_version_check!()
     case parse_opts(argv) do
-      {_opts, []}             -> Mix.Tasks.Help.run(["phx.new"])
+      {_opts, []}             -> Mix.Tasks.Help.run(["reph.new"])
       {opts, [base_path | _]} ->
         generator = if opts[:umbrella], do: Umbrella, else: Single
         generate(base_path, generator, opts)
@@ -84,7 +84,7 @@ defmodule Mix.Tasks.Phx.New do
   def run(argv, generator) do
     elixir_version_check!()
     case parse_opts(argv) do
-      {_opts, []}             -> Mix.Tasks.Help.run(["phx.new"])
+      {_opts, []}             -> Mix.Tasks.Help.run(["reph.new"])
       {opts, [base_path | _]} -> generate(base_path, generator, opts)
     end
   end

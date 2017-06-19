@@ -31,7 +31,7 @@ defmodule Mix.Tasks.Phx.New.UmbrellaTest do
 
   test "new with umbrella and defaults" do
     in_tmp "new with umbrella and defaults", fn ->
-      Mix.Tasks.Phx.New.run([@app, "--umbrella"])
+      Mix.Tasks.Reph.New.run([@app, "--umbrella"])
 
       assert_file root_path(@app, "README.md")
       assert_file root_path(@app, ".gitignore")
@@ -183,7 +183,7 @@ defmodule Mix.Tasks.Phx.New.UmbrellaTest do
 
   test "new without defaults" do
     in_tmp "new without defaults", fn ->
-      Mix.Tasks.Phx.New.run([@app, "--umbrella", "--no-ecto"])
+      Mix.Tasks.Reph.New.run([@app, "--umbrella", "--no-ecto"])
 
       # No Ecto
       config = ~r/config :phx_umb, PhxUmb.Repo,/
@@ -207,14 +207,14 @@ defmodule Mix.Tasks.Phx.New.UmbrellaTest do
 
   test "new with binary_id" do
     in_tmp "new with binary_id", fn ->
-      Mix.Tasks.Phx.New.run([@app, "--umbrella", "--binary-id"])
+      Mix.Tasks.Reph.New.run([@app, "--umbrella", "--binary-id"])
       assert_file web_path(@app, "config/config.exs"), ~r/generators: \[binary_id: true\]/
     end
   end
 
   test "new with uppercase" do
     in_tmp "new with uppercase", fn ->
-      Mix.Tasks.Phx.New.run(["phxUmb", "--umbrella"])
+      Mix.Tasks.Reph.New.run(["phxUmb", "--umbrella"])
 
       assert_file "phxUmb_umbrella/README.md"
 
@@ -235,7 +235,7 @@ defmodule Mix.Tasks.Phx.New.UmbrellaTest do
   test "new with path, app and module" do
     in_tmp "new with path, app and module", fn ->
       project_path = Path.join(File.cwd!, "custom_path")
-      Mix.Tasks.Phx.New.run([project_path, "--umbrella", "--app", @app, "--module", "PhoteuxBlog"])
+      Mix.Tasks.Reph.New.run([project_path, "--umbrella", "--app", @app, "--module", "PhoteuxBlog"])
 
       assert_file "custom_path_umbrella/apps/phx_umb/mix.exs", ~r/app: :phx_umb/
       assert_file "custom_path_umbrella/apps/phx_umb_web/lib/phx_umb_web/endpoint.ex", ~r/app: :#{@app}_web/
@@ -254,7 +254,7 @@ defmodule Mix.Tasks.Phx.New.UmbrellaTest do
       File.mkdir! "apps"
       File.cd! "apps", fn ->
         assert_raise Mix.Error, "Unable to nest umbrella project within apps", fn ->
-          Mix.Tasks.Phx.New.run([@app, "--umbrella"])
+          Mix.Tasks.Reph.New.run([@app, "--umbrella"])
         end
       end
     end
@@ -263,7 +263,7 @@ defmodule Mix.Tasks.Phx.New.UmbrellaTest do
   test "new with mysql adapter" do
     in_tmp "new with mysql adapter", fn ->
       project_path = Path.join(File.cwd!, "custom_path")
-      Mix.Tasks.Phx.New.run([project_path, "--umbrella", "--database", "mysql"])
+      Mix.Tasks.Reph.New.run([project_path, "--umbrella", "--database", "mysql"])
 
       assert_file "custom_path_umbrella/apps/custom_path/mix.exs", ~r/:mariaex/
       assert_file "custom_path_umbrella/apps/custom_path/config/dev.exs",
@@ -286,7 +286,7 @@ defmodule Mix.Tasks.Phx.New.UmbrellaTest do
     in_tmp "new defaults to pg adapter", fn ->
       app = "custom_path"
       project_path = Path.join(File.cwd!, app)
-      Mix.Tasks.Phx.New.run([project_path, "--umbrella"])
+      Mix.Tasks.Reph.New.run([project_path, "--umbrella"])
 
       assert_file app_path(app, "mix.exs"), ~r/:postgrex/
       assert_file app_path(app, "config/dev.exs"), [~r/Ecto.Adapters.Postgres/, ~r/username: "postgres"/, ~r/password: "postgres"/, ~r/hostname: "localhost"/]
@@ -302,40 +302,40 @@ defmodule Mix.Tasks.Phx.New.UmbrellaTest do
     in_tmp "new with invalid database adapter", fn ->
       project_path = Path.join(File.cwd!, "custom_path")
       assert_raise Mix.Error, ~s(Unknown database "invalid"), fn ->
-        Mix.Tasks.Phx.New.run([project_path, "--umbrella", "--database", "invalid"])
+        Mix.Tasks.Reph.New.run([project_path, "--umbrella", "--database", "invalid"])
       end
     end
   end
 
   test "new with invalid args" do
     assert_raise Mix.Error, ~r"Application name must start with a letter and ", fn ->
-      Mix.Tasks.Phx.New.run ["007invalid", "--umbrella"]
+      Mix.Tasks.Reph.New.run ["007invalid", "--umbrella"]
     end
 
     assert_raise Mix.Error, ~r"Application name must start with a letter and ", fn ->
-      Mix.Tasks.Phx.New.run ["valid1", "--app", "007invalid", "--umbrella"]
+      Mix.Tasks.Reph.New.run ["valid1", "--app", "007invalid", "--umbrella"]
     end
 
     assert_raise Mix.Error, ~r"Module name must be a valid Elixir alias", fn ->
-      Mix.Tasks.Phx.New.run ["valid2", "--module", "not.valid", "--umbrella"]
+      Mix.Tasks.Reph.New.run ["valid2", "--module", "not.valid", "--umbrella"]
     end
 
     assert_raise Mix.Error, ~r"Module name \w+ is already taken", fn ->
-      Mix.Tasks.Phx.New.run ["string", "--umbrella"]
+      Mix.Tasks.Reph.New.run ["string", "--umbrella"]
     end
 
     assert_raise Mix.Error, ~r"Module name \w+ is already taken", fn ->
-      Mix.Tasks.Phx.New.run ["valid3", "--app", "mix", "--umbrella"]
+      Mix.Tasks.Reph.New.run ["valid3", "--app", "mix", "--umbrella"]
     end
 
     assert_raise Mix.Error, ~r"Module name \w+ is already taken", fn ->
-      Mix.Tasks.Phx.New.run ["valid4", "--module", "String", "--umbrella"]
+      Mix.Tasks.Reph.New.run ["valid4", "--module", "String", "--umbrella"]
     end
   end
 
   test "invalid options" do
     assert_raise Mix.Error, ~r/Invalid option: -d/, fn ->
-      Mix.Tasks.Phx.New.run(["valid5", "-database", "mysql", "--umbrella"])
+      Mix.Tasks.Reph.New.run(["valid5", "-database", "mysql", "--umbrella"])
     end
   end
 
@@ -344,7 +344,7 @@ defmodule Mix.Tasks.Phx.New.UmbrellaTest do
       in_tmp tmp_dir, fn ->
         cwd = File.cwd!()
         umbrella_path = root_path(@app)
-        Mix.Tasks.Phx.New.run([@app, "--umbrella"])
+        Mix.Tasks.Reph.New.run([@app, "--umbrella"])
         flush()
 
         for dir <- [cwd, umbrella_path] do
@@ -363,7 +363,7 @@ defmodule Mix.Tasks.Phx.New.UmbrellaTest do
       in_tmp tmp_dir, fn ->
         cwd = File.cwd!()
         umbrella_path = root_path(@app)
-        Mix.Tasks.Phx.New.run([@app, "--umbrella"])
+        Mix.Tasks.Reph.New.run([@app, "--umbrella"])
         flush()
 
         for dir <- [cwd, umbrella_path] do
@@ -379,7 +379,7 @@ defmodule Mix.Tasks.Phx.New.UmbrellaTest do
     test "generates web-only files", %{tmp_dir: tmp_dir} do
       in_tmp tmp_dir, fn ->
         umbrella_path = root_path(@app)
-        Mix.Tasks.Phx.New.run([@app, "--umbrella"])
+        Mix.Tasks.Reph.New.run([@app, "--umbrella"])
         flush()
 
         File.cd!(Path.join(umbrella_path, "apps"))

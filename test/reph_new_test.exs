@@ -1,6 +1,6 @@
 Code.require_file "mix_helper.exs", __DIR__
 
-defmodule Mix.Tasks.Phx.NewTest do
+defmodule Mix.Tasks.Reph.NewTest do
   use ExUnit.Case
   import MixHelper
   import ExUnit.CaptureIO
@@ -15,13 +15,13 @@ defmodule Mix.Tasks.Phx.NewTest do
   end
 
   test "returns the version" do
-    Mix.Tasks.Phx.New.run(["-v"])
+    Mix.Tasks.Reph.New.run(["-v"])
     assert_received {:mix_shell, :info, ["Phoenix v" <> _]}
   end
 
   test "new with defaults" do
     in_tmp "new with defaults", fn ->
-      Mix.Tasks.Phx.New.run([@app_name])
+      Mix.Tasks.Reph.New.run([@app_name])
 
       assert_file "phx_blog/README.md"
       assert_file "phx_blog/mix.exs", fn file ->
@@ -136,7 +136,7 @@ defmodule Mix.Tasks.Phx.NewTest do
 
   test "new without defaults" do
     in_tmp "new without defaults", fn ->
-      Mix.Tasks.Phx.New.run([@app_name, "--no-ecto"])
+      Mix.Tasks.Reph.New.run([@app_name, "--no-ecto"])
 
       # No Ecto
       config = ~r/config :phx_blog, PhxBlog.Repo,/
@@ -158,14 +158,14 @@ defmodule Mix.Tasks.Phx.NewTest do
 
   test "new with binary_id" do
     in_tmp "new with binary_id", fn ->
-      Mix.Tasks.Phx.New.run([@app_name, "--binary-id"])
+      Mix.Tasks.Reph.New.run([@app_name, "--binary-id"])
       assert_file "phx_blog/config/config.exs", ~r/generators: \[binary_id: true\]/
     end
   end
 
   test "new with uppercase" do
     in_tmp "new with uppercase", fn ->
-      Mix.Tasks.Phx.New.run(["phxBlog"])
+      Mix.Tasks.Reph.New.run(["phxBlog"])
 
       assert_file "phxBlog/README.md"
 
@@ -183,7 +183,7 @@ defmodule Mix.Tasks.Phx.NewTest do
   test "new with path, app and module" do
     in_tmp "new with path, app and module", fn ->
       project_path = Path.join(File.cwd!, "custom_path")
-      Mix.Tasks.Phx.New.run([project_path, "--app", @app_name, "--module", "PhoteuxBlog"])
+      Mix.Tasks.Reph.New.run([project_path, "--app", @app_name, "--module", "PhoteuxBlog"])
 
       assert_file "custom_path/.gitignore"
       assert_file "custom_path/mix.exs", ~r/app: :phx_blog/
@@ -198,7 +198,7 @@ defmodule Mix.Tasks.Phx.NewTest do
       File.write! "mix.exs", MixHelper.umbrella_mixfile_contents()
       File.mkdir! "apps"
       File.cd! "apps", fn ->
-        Mix.Tasks.Phx.New.run([@app_name])
+        Mix.Tasks.Reph.New.run([@app_name])
 
         assert_file "phx_blog/mix.exs", fn file ->
           assert file =~ "deps_path: \"../../deps\""
@@ -216,7 +216,7 @@ defmodule Mix.Tasks.Phx.NewTest do
   test "new with mysql adapter" do
     in_tmp "new with mysql adapter", fn ->
       project_path = Path.join(File.cwd!, "custom_path")
-      Mix.Tasks.Phx.New.run([project_path, "--database", "mysql"])
+      Mix.Tasks.Reph.New.run([project_path, "--database", "mysql"])
 
       assert_file "custom_path/mix.exs", ~r/:mariaex/
       assert_file "custom_path/config/dev.exs", [~r/Ecto.Adapters.MySQL/, ~r/username: "root"/, ~r/password: ""/]
@@ -232,7 +232,7 @@ defmodule Mix.Tasks.Phx.NewTest do
   test "new defaults to pg adapter" do
     in_tmp "new defaults to pg adapter", fn ->
       project_path = Path.join(File.cwd!, "custom_path")
-      Mix.Tasks.Phx.New.run([project_path])
+      Mix.Tasks.Reph.New.run([project_path])
 
       assert_file "custom_path/mix.exs", ~r/:postgrex/
       assert_file "custom_path/config/dev.exs", [~r/Ecto.Adapters.Postgres/, ~r/username: "postgres"/, ~r/password: "postgres"/, ~r/hostname: "localhost"/]
@@ -249,47 +249,47 @@ defmodule Mix.Tasks.Phx.NewTest do
     in_tmp "new with invalid database adapter", fn ->
       project_path = Path.join(File.cwd!, "custom_path")
       assert_raise Mix.Error, ~s(Unknown database "invalid"), fn ->
-        Mix.Tasks.Phx.New.run([project_path, "--database", "invalid"])
+        Mix.Tasks.Reph.New.run([project_path, "--database", "invalid"])
       end
     end
   end
 
   test "new with invalid args" do
     assert_raise Mix.Error, ~r"Application name must start with a letter and ", fn ->
-      Mix.Tasks.Phx.New.run ["007invalid"]
+      Mix.Tasks.Reph.New.run ["007invalid"]
     end
 
     assert_raise Mix.Error, ~r"Application name must start with a letter and ", fn ->
-      Mix.Tasks.Phx.New.run ["valid", "--app", "007invalid"]
+      Mix.Tasks.Reph.New.run ["valid", "--app", "007invalid"]
     end
 
     assert_raise Mix.Error, ~r"Module name must be a valid Elixir alias", fn ->
-      Mix.Tasks.Phx.New.run ["valid", "--module", "not.valid"]
+      Mix.Tasks.Reph.New.run ["valid", "--module", "not.valid"]
     end
 
     assert_raise Mix.Error, ~r"Module name \w+ is already taken", fn ->
-      Mix.Tasks.Phx.New.run ["string"]
+      Mix.Tasks.Reph.New.run ["string"]
     end
 
     assert_raise Mix.Error, ~r"Module name \w+ is already taken", fn ->
-      Mix.Tasks.Phx.New.run ["valid", "--app", "mix"]
+      Mix.Tasks.Reph.New.run ["valid", "--app", "mix"]
     end
 
     assert_raise Mix.Error, ~r"Module name \w+ is already taken", fn ->
-      Mix.Tasks.Phx.New.run ["valid", "--module", "String"]
+      Mix.Tasks.Reph.New.run ["valid", "--module", "String"]
     end
   end
 
   test "invalid options" do
     assert_raise Mix.Error, ~r/Invalid option: -d/, fn ->
-      Mix.Tasks.Phx.New.run(["valid", "-database", "mysql"])
+      Mix.Tasks.Reph.New.run(["valid", "-database", "mysql"])
     end
   end
 
   test "new without args" do
     in_tmp "new without args", fn ->
-      assert capture_io(fn -> Mix.Tasks.Phx.New.run([]) end) =~
-             "Creates a new Phoenix project."
+      assert capture_io(fn -> Mix.Tasks.Reph.New.run([]) end) =~
+             "Creates a new Reph project."
     end
   end
 end
