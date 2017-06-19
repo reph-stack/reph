@@ -8,6 +8,7 @@ Some of the batteries included:
 - Less-compiler pre-installed and set up
 - SSR (Server-side rendering) set up
 - React-router set up to work with SSR
+- Websocket connection
 
 Syntax of the `reph.new` command is the same as of `phx.new`, except for flags `--no-brunch`, `--no-html`, `--dev`, `--ecto` which are not supported.
 

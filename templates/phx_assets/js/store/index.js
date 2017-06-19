@@ -8,6 +8,7 @@ import thunkMW from "redux-thunk";
 
 import routes from "routes";
 import reducers from "reducers";
+import WSActions from "actions/ws";
 
 
 export default function createStoreAndRouter(props) {
@@ -30,6 +31,7 @@ const createForBrowser = () => {
       devToolsExt
     )
   );
+  store.dispatch(WSActions.init());
   const router = <ConnectedRouter
     history={history}
   >
