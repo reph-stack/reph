@@ -115,6 +115,13 @@ defmodule Mix.Tasks.Reph.New.UmbrellaTest do
       assert_file web_path(@app, "assets/styles/app.less")
       assert_file web_path(@app, "assets/js/index.js"),
                   ~s[import React from "react"]
+      assert_file web_path(@app, "assets/js/components/Header/index.js")
+      assert_file web_path(@app, "assets/js/components/Main/index.js")
+      assert_file web_path(@app, "assets/js/containers/App/index.js")
+      assert_file web_path(@app, "assets/js/containers/index.js")
+      assert_file web_path(@app, "assets/js/reducers/index.js")
+      assert_file web_path(@app, "assets/js/routes/index.js")
+      assert_file web_path(@app, "assets/js/store/index.js")
 
       assert_file web_path(@app, "assets/package.json"), fn file ->
         assert file =~ ~s["file:../../../deps/phoenix"]

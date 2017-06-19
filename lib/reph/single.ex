@@ -42,15 +42,22 @@ defmodule Reph.Single do
   ]
 
   template :react, [
-    {:eex,  "phx_assets/webpack.config.js",       :project, "assets/webpack.config.js"},
-    {:text, "phx_assets/styles/index.less",       :project, "assets/styles/index.less"},
-    {:text, "phx_assets/styles/app.less",         :project, "assets/styles/app.less"},
-    {:text, "phx_assets/styles/phoenix.css",      :project, "assets/styles/phoenix.css"},
-    {:text, "phx_assets/styles/bootstrap.css",    :project, "assets/styles/bootstrap.css"},
-    {:eex,  "phx_assets/js/index.js",             :project, "assets/js/index.js"},
-    {:eex,  "phx_assets/package.json",            :project, "assets/package.json"},
-    {:text, "phx_assets/static/robots.txt",       :project, "assets/static/robots.txt"},
-    {:keep, "phx_assets/vendor",                  :project, "assets/vendor"},
+    {:eex,  "phx_assets/webpack.config.js",             :project, "assets/webpack.config.js"},
+    {:text, "phx_assets/styles/index.less",             :project, "assets/styles/index.less"},
+    {:text, "phx_assets/styles/app.less",               :project, "assets/styles/app.less"},
+    {:text, "phx_assets/styles/phoenix.css",            :project, "assets/styles/phoenix.css"},
+    {:text, "phx_assets/styles/bootstrap.css",          :project, "assets/styles/bootstrap.css"},
+    {:eex,  "phx_assets/js/index.js",                   :project, "assets/js/index.js"},
+    {:eex,  "phx_assets/js/components/Header/index.js", :project, "assets/js/components/Header/index.js"},
+    {:eex,  "phx_assets/js/components/Main/index.js",   :project, "assets/js/components/Main/index.js"},
+    {:eex,  "phx_assets/js/containers/App/index.js",    :project, "assets/js/containers/App/index.js"},
+    {:eex,  "phx_assets/js/containers/index.js",        :project, "assets/js/containers/index.js"},
+    {:eex,  "phx_assets/js/reducers/index.js",          :project, "assets/js/reducers/index.js"},
+    {:eex,  "phx_assets/js/routes/index.js",            :project, "assets/js/routes/index.js"},
+    {:eex,  "phx_assets/js/store/index.js",             :project, "assets/js/store/index.js"},
+    {:eex,  "phx_assets/package.json",                  :project, "assets/package.json"},
+    {:text, "phx_assets/static/robots.txt",             :project, "assets/static/robots.txt"},
+    {:keep, "phx_assets/vendor",                        :project, "assets/vendor"},
   ]
 
   template :html, [

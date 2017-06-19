@@ -80,6 +80,13 @@ defmodule Mix.Tasks.Reph.NewTest do
       assert_file "phx_blog/assets/styles/app.less"
       assert_file "phx_blog/assets/js/index.js",
                   ~s[import React from "react"]
+      assert_file "phx_blog/assets/js/components/Header/index.js"
+      assert_file "phx_blog/assets/js/components/Main/index.js"
+      assert_file "phx_blog/assets/js/containers/App/index.js"
+      assert_file "phx_blog/assets/js/containers/index.js"
+      assert_file "phx_blog/assets/js/reducers/index.js"
+      assert_file "phx_blog/assets/js/routes/index.js"
+      assert_file "phx_blog/assets/js/store/index.js"
 
       assert_file "phx_blog/assets/package.json", fn file ->
         assert file =~ ~s["file:../deps/phoenix"]
