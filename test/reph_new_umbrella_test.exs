@@ -102,9 +102,9 @@ defmodule Mix.Tasks.Reph.New.UmbrellaTest do
       assert_file web_path(@app, "test/#{@app}_web/views/react_view_test.exs"),
                   "defmodule PhxUmb.Web.ReactViewTest"
 
-      # Brunch
+      # React
       assert_file web_path(@app, ".gitignore"), "/node_modules"
-      assert_file web_path(@app, "assets/brunch-config.js"), ~s("js/app.js": ["js/app"])
+      assert_file web_path(@app, "assets/webpack.config.js"), ~s("js/app.js": ["js/app"])
       assert_file web_path(@app, "config/dev.exs"), fn file ->
         assert file =~ "watchers: [node:"
         assert file =~ "lib/#{@app}_web/views/.*(ex)"
@@ -406,9 +406,9 @@ defmodule Mix.Tasks.Reph.New.UmbrellaTest do
         assert_file "another/lib/another/templates/layout/app.html.eex",
                     "<title>Hello Another!</title>"
 
-        # Brunch
+        # React
         assert_file "another/.gitignore", "/node_modules"
-        assert_file "another/assets/brunch-config.js", ~s("js/app.js": ["js/app"])
+        assert_file "another/assets/webpack.config.js", ~s("js/app.js": ["js/app"])
         assert_file "another/config/dev.exs", "watchers: [node:"
         assert_file "another/assets/static/favicon.ico"
         assert_file "another/assets/static/images/phoenix.png"

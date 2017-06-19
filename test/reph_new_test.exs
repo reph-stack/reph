@@ -67,9 +67,9 @@ defmodule Mix.Tasks.Reph.NewTest do
       assert_file "phx_blog/lib/phx_blog/web/templates/layout/app.html.eex",
                   "<title>Hello PhxBlog!</title>"
 
-      # Brunch
+      # React
       assert_file "phx_blog/.gitignore", "/node_modules"
-      assert_file "phx_blog/assets/brunch-config.js", ~s("js/app.js": ["js/app"])
+      assert_file "phx_blog/assets/webpack.config.js", ~s("js/app.js": ["js/app"])
       assert_file "phx_blog/config/dev.exs", fn file ->
         assert file =~ "watchers: [node:"
         assert file =~ "lib/phx_blog/web/views/.*(ex)"

@@ -35,7 +35,6 @@ defmodule Reph.Generator do
       unquote(templates_ast)
       def template_files(name), do: Keyword.fetch!(@templates, name)
       # Embed missing files from Phoenix static.
-      embed_text :phoenix_js, from_file: Path.expand("../../priv/static/phoenix.js", unquote(__DIR__))
       embed_text :phoenix_png, from_file: Path.expand("../../priv/static/phoenix.png", unquote(__DIR__))
       embed_text :phoenix_favicon, from_file: Path.expand("../../priv/static/favicon.ico", unquote(__DIR__))
     end
@@ -108,8 +107,8 @@ defmodule Reph.Generator do
       web_namespace: inspect(project.web_namespace),
       phoenix_dep: @phoenix_dep,
       phoenix_path: @phoenix_path,
-      phoenix_brunch_path: phoenix_brunch_path(project),
-      phoenix_html_brunch_path: phoenix_html_brunch_path(project),
+      phoenix_npm_path: phoenix_npm_path(project),
+      phoenix_html_npm_path: phoenix_html_npm_path(project),
       phoenix_static_path: @phoenix_path,
       pubsub_server: pubsub_server,
       secret_key_base: random_string(64),
@@ -200,14 +199,14 @@ defmodule Reph.Generator do
     end
   end
 
-  defp phoenix_brunch_path(%Project{in_umbrella?: true}),
+  defp phoenix_npm_path(%Project{in_umbrella?: true}),
     do: "../../../deps/phoenix"
-  defp phoenix_brunch_path(%Project{in_umbrella?: false}),
+  defp phoenix_npm_path(%Project{in_umbrella?: false}),
     do: "../deps/phoenix"
 
-  defp phoenix_html_brunch_path(%Project{in_umbrella?: true}),
+  defp phoenix_html_npm_path(%Project{in_umbrella?: true}),
     do: "../../../deps/phoenix_html"
-  defp phoenix_html_brunch_path(%Project{in_umbrella?: false}),
+  defp phoenix_html_npm_path(%Project{in_umbrella?: false}),
     do: "../deps/phoenix_html"
 
   defp random_string(length) do

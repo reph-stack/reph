@@ -35,14 +35,14 @@ defmodule Reph.Web do
     {:eex,  "phx_gettext/errors.pot",               :web, "priv/gettext/errors.pot"}
   ]
 
-  template :brunch, [
-    {:text, "phx_assets/brunch/gitignore",        :web, ".gitignore"},
-    {:eex,  "phx_assets/brunch/brunch-config.js", :web, "assets/brunch-config.js"},
+  template :react, [
+    {:text, "phx_assets/react/gitignore",        :web, ".gitignore"},
+    {:eex,  "phx_assets/react/webpack.config.js", :web, "assets/webpack.config.js"},
     {:text, "phx_assets/app.css",                 :web, "assets/css/app.css"},
     {:text, "phx_assets/phoenix.css",             :web, "assets/css/phoenix.css"},
-    {:eex,  "phx_assets/brunch/app.js",           :web, "assets/js/app.js"},
-    {:eex,  "phx_assets/brunch/socket.js",        :web, "assets/js/socket.js"},
-    {:eex,  "phx_assets/brunch/package.json",     :web, "assets/package.json"},
+    {:eex,  "phx_assets/react/app.js",           :web, "assets/js/app.js"},
+    {:eex,  "phx_assets/react/socket.js",        :web, "assets/js/socket.js"},
+    {:eex,  "phx_assets/react/package.json",     :web, "assets/package.json"},
     {:text, "phx_assets/robots.txt",              :web, "assets/static/robots.txt"},
     {:keep, "phx_assets/vendor",                  :web, "assets/vendor"},
   ]
@@ -86,7 +86,7 @@ defmodule Reph.Web do
     copy_from project, __MODULE__, :gettext
 
     gen_html(project)
-    gen_brunch(project)
+    gen_react(project)
     project
   end
 
@@ -94,8 +94,8 @@ defmodule Reph.Web do
     copy_from project, __MODULE__, :html
   end
 
-  defp gen_brunch(%Project{web_path: web_path} = project) do
-    copy_from project, __MODULE__, :brunch
+  defp gen_react(%Project{web_path: web_path} = project) do
+    copy_from project, __MODULE__, :react
     create_file Path.join(web_path, "assets/static/images/phoenix.png"), phoenix_png_text()
     create_file Path.join(web_path, "assets/static/favicon.ico"), phoenix_favicon_text()
   end

@@ -40,14 +40,14 @@ defmodule Reph.Single do
     {:eex,  "phx_ecto/data_case.ex",         :project, "test/support/data_case.ex"},
   ]
 
-  template :brunch, [
-    {:text, "phx_assets/brunch/gitignore",        :project, ".gitignore"},
-    {:eex,  "phx_assets/brunch/brunch-config.js", :project, "assets/brunch-config.js"},
+  template :react, [
+    {:text, "phx_assets/react/gitignore",        :project, ".gitignore"},
+    {:eex,  "phx_assets/react/webpack.config.js", :project, "assets/webpack.config.js"},
     {:text, "phx_assets/app.css",                 :project, "assets/css/app.css"},
     {:text, "phx_assets/phoenix.css",             :project, "assets/css/phoenix.css"},
-    {:eex,  "phx_assets/brunch/app.js",           :project, "assets/js/app.js"},
-    {:eex,  "phx_assets/brunch/socket.js",        :project, "assets/js/socket.js"},
-    {:eex,  "phx_assets/brunch/package.json",     :project, "assets/package.json"},
+    {:eex,  "phx_assets/react/app.js",           :project, "assets/js/app.js"},
+    {:eex,  "phx_assets/react/socket.js",        :project, "assets/js/socket.js"},
+    {:eex,  "phx_assets/react/package.json",     :project, "assets/package.json"},
     {:text, "phx_assets/robots.txt",              :project, "assets/static/robots.txt"},
     {:keep, "phx_assets/vendor",                  :project, "assets/vendor"},
   ]
@@ -107,7 +107,7 @@ defmodule Reph.Single do
 
     if Project.ecto?(project), do: gen_ecto(project)
     gen_html(project)
-    gen_brunch(project)
+    gen_react(project)
     project
   end
 
@@ -120,8 +120,8 @@ defmodule Reph.Single do
     gen_ecto_config(project)
   end
 
-  defp gen_brunch(%Project{web_path: web_path} = project) do
-    copy_from project, __MODULE__, :brunch
+  defp gen_react(%Project{web_path: web_path} = project) do
+    copy_from project, __MODULE__, :react
     create_file Path.join(web_path, "assets/static/images/phoenix.png"), phoenix_png_text()
     create_file Path.join(web_path, "assets/static/favicon.ico"), phoenix_favicon_text()
   end
