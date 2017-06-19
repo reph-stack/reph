@@ -1,7 +1,7 @@
-defmodule Reph.New.Ecto do
+defmodule Reph.Ecto do
   @moduledoc false
-  use Reph.New.Generator
-  alias Reph.New.{Project}
+  use Reph.Generator
+  alias Reph.{Project}
 
   @pre "phx_umbrella/apps/app_name"
 

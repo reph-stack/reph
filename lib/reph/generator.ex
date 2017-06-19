@@ -1,7 +1,7 @@
-defmodule Reph.New.Generator do
+defmodule Reph.Generator do
   @moduledoc false
   import Mix.Generator
-  alias Reph.New.{Project}
+  alias Reph.{Project}
 
   @callback prepare_project(Project.t) :: Project.t
   @callback generate(Project.t) :: Project.t

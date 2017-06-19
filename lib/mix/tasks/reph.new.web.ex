@@ -33,10 +33,10 @@ defmodule Mix.Tasks.Reph.New.Web do
     Mix.Tasks.Help.run(["reph.new.web"])
   end
   def run([path | _] = args) do
-    unless Reph.New.Generator.in_umbrella?(path) do
+    unless Reph.Generator.in_umbrella?(path) do
       Mix.raise "The web task can only be run within an umbrella's apps directory"
     end
 
-    Mix.Tasks.Reph.New.run(args, Reph.New.Web)
+    Mix.Tasks.Reph.New.run(args, Reph.Web)
   end
 end

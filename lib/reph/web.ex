@@ -1,7 +1,7 @@
-defmodule Reph.New.Web do
+defmodule Reph.Web do
   @moduledoc false
-  use Reph.New.Generator
-  alias Reph.New.{Project}
+  use Reph.Generator
+  alias Reph.{Project}
 
   @pre "phx_umbrella/apps/app_name_web"
 
