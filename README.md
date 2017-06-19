@@ -12,9 +12,12 @@ Some of the batteries included:
 
 Syntax of the `reph.new` command is the same as of `phx.new`, except for flags `--no-brunch`, `--no-html`, `--dev`, `--ecto` which are not supported.
 
-To build and install it locally:
+To install, run:
+
+    mix archive.install github reph-stack/reph
+
+To build and install locally:
  
-    $ cd installer
     $ MIX_ENV=prod mix archive.build
     $ mix archive.install
 
