@@ -77,7 +77,7 @@ defmodule Mix.Tasks.Reph.NewTest do
       end
       assert_file "phx_blog/assets/static/favicon.ico"
       assert_file "phx_blog/assets/static/images/phoenix.png"
-      assert_file "phx_blog/assets/css/app.css"
+      assert_file "phx_blog/assets/styles/app.less"
       assert_file "phx_blog/assets/js/app.js",
                   ~s[import socket from "./socket"]
       assert_file "phx_blog/assets/js/socket.js",
@@ -88,7 +88,7 @@ defmodule Mix.Tasks.Reph.NewTest do
         assert file =~ ~s["file:../deps/phoenix_html"]
       end
 
-      refute File.exists? "phx_blog/priv/static/css/app.css"
+      refute File.exists? "phx_blog/priv/static/styles/app.less"
       refute File.exists? "phx_blog/priv/static/js/phoenix.js"
       refute File.exists? "phx_blog/priv/static/js/app.js"
 

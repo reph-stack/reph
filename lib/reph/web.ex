@@ -36,26 +36,28 @@ defmodule Reph.Web do
   ]
 
   template :react, [
-    {:text, "phx_assets/react/gitignore",        :web, ".gitignore"},
+    {:text, "phx_assets/react/gitignore",         :web, ".gitignore"},
     {:eex,  "phx_assets/react/webpack.config.js", :web, "assets/webpack.config.js"},
-    {:text, "phx_assets/app.css",                 :web, "assets/css/app.css"},
-    {:text, "phx_assets/phoenix.css",             :web, "assets/css/phoenix.css"},
-    {:eex,  "phx_assets/react/app.js",           :web, "assets/js/app.js"},
-    {:eex,  "phx_assets/react/socket.js",        :web, "assets/js/socket.js"},
-    {:eex,  "phx_assets/react/package.json",     :web, "assets/package.json"},
+    {:text, "phx_assets/styles/index.less",       :web, "assets/styles/index.less"},
+    {:text, "phx_assets/styles/app.less",         :web, "assets/styles/app.less"},
+    {:text, "phx_assets/styles/phoenix.css",      :web, "assets/styles/phoenix.css"},
+    {:text, "phx_assets/styles/bootstrap.css",    :web, "assets/styles/bootstrap.css"},
+    {:eex,  "phx_assets/react/app.js",            :web, "assets/js/app.js"},
+    {:eex,  "phx_assets/react/socket.js",         :web, "assets/js/socket.js"},
+    {:eex,  "phx_assets/react/package.json",      :web, "assets/package.json"},
     {:text, "phx_assets/robots.txt",              :web, "assets/static/robots.txt"},
     {:keep, "phx_assets/vendor",                  :web, "assets/vendor"},
   ]
 
   template :html, [
-    {:eex,  "phx_web/controllers/react_controller.ex",         :web, "lib/:web_app/controllers/react_controller.ex"},
+    {:eex,  "phx_web/controllers/react_controller.ex",        :web, "lib/:web_app/controllers/react_controller.ex"},
     {:eex,  "phx_web/templates/layout/app.html.eex",          :web, "lib/:web_app/templates/layout/app.html.eex"},
-    {:eex,  "phx_web/templates/react/index.html.eex",          :web, "lib/:web_app/templates/react/index.html.eex"},
+    {:eex,  "phx_web/templates/react/index.html.eex",         :web, "lib/:web_app/templates/react/index.html.eex"},
     {:eex,  "phx_web/views/layout_view.ex",                   :web, "lib/:web_app/views/layout_view.ex"},
-    {:eex,  "phx_web/views/react_view.ex",                     :web, "lib/:web_app/views/react_view.ex"},
-    {:eex,  "phx_test/controllers/react_controller_test.exs",  :web, "test/:web_app/controllers/react_controller_test.exs"},
+    {:eex,  "phx_web/views/react_view.ex",                    :web, "lib/:web_app/views/react_view.ex"},
+    {:eex,  "phx_test/controllers/react_controller_test.exs", :web, "test/:web_app/controllers/react_controller_test.exs"},
     {:eex,  "phx_test/views/layout_view_test.exs",            :web, "test/:web_app/views/layout_view_test.exs"},
-    {:eex,  "phx_test/views/react_view_test.exs",              :web, "test/:web_app/views/react_view_test.exs"},
+    {:eex,  "phx_test/views/react_view_test.exs",             :web, "test/:web_app/views/react_view_test.exs"},
   ]
 
   def prepare_project(%Project{app: app} = project) when not is_nil(app) do

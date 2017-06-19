@@ -112,7 +112,7 @@ defmodule Mix.Tasks.Reph.New.UmbrellaTest do
       end
       assert_file web_path(@app, "assets/static/favicon.ico")
       assert_file web_path(@app, "assets/static/images/phoenix.png")
-      assert_file web_path(@app, "assets/css/app.css")
+      assert_file web_path(@app, "assets/styles/app.less")
       assert_file web_path(@app, "assets/js/app.js"),
                   ~s[import socket from "./socket"]
       assert_file web_path(@app, "assets/js/socket.js"),
@@ -123,7 +123,7 @@ defmodule Mix.Tasks.Reph.New.UmbrellaTest do
         assert file =~ ~s["file:../../../deps/phoenix_html"]
       end
 
-      refute File.exists?(web_path(@app, "priv/static/css/app.css"))
+      refute File.exists?(web_path(@app, "priv/static/styles/app.less"))
       refute File.exists?(web_path(@app, "priv/static/js/phoenix.js"))
       refute File.exists?(web_path(@app, "priv/static/js/app.js"))
 
@@ -412,7 +412,7 @@ defmodule Mix.Tasks.Reph.New.UmbrellaTest do
         assert_file "another/config/dev.exs", "watchers: [node:"
         assert_file "another/assets/static/favicon.ico"
         assert_file "another/assets/static/images/phoenix.png"
-        assert_file "another/assets/css/app.css"
+        assert_file "another/assets/styles/app.less"
         assert_file "another/assets/js/app.js",
                     ~s[import socket from "./socket"]
         assert_file "another/assets/js/socket.js",
@@ -423,7 +423,7 @@ defmodule Mix.Tasks.Reph.New.UmbrellaTest do
           assert file =~ ~s["file:../../../deps/phoenix_html"]
         end
 
-        refute File.exists? "another/priv/static/css/app.css"
+        refute File.exists? "another/priv/static/less/app.less"
         refute File.exists? "another/priv/static/js/phoenix.js"
         refute File.exists? "another/priv/static/js/app.js"
 
