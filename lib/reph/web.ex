@@ -58,18 +58,6 @@ defmodule Reph.Web do
     {:eex,  "phx_test/views/react_view_test.exs",              :web, "test/:web_app/views/react_view_test.exs"},
   ]
 
-  template :bare, [
-    {:text, "phx_assets/bare/gitignore", :web, ".gitignore"},
-  ]
-
-  template :static, [
-    {:text,   "phx_assets/bare/gitignore", :web, ".gitignore"},
-    {:text,   "phx_assets/app.css",        :web, "priv/static/css/app.css"},
-    {:append, "phx_assets/phoenix.css",    :web, "priv/static/css/app.css"},
-    {:text,   "phx_assets/bare/app.js",    :web, "priv/static/js/app.js"},
-    {:text,   "phx_assets/robots.txt",     :web, "priv/static/robots.txt"},
-  ]
-
   def prepare_project(%Project{app: app} = project) when not is_nil(app) do
     project_path = Path.expand(project.base_path)
 

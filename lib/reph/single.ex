@@ -63,18 +63,6 @@ defmodule Reph.Single do
     {:eex, "phx_test/views/react_view_test.exs",              :project, "test/:app/web/views/react_view_test.exs"},
   ]
 
-  template :bare, [
-    {:text, "phx_assets/bare/gitignore", :project, ".gitignore"},
-  ]
-
-  template :static, [
-    {:text,   "phx_assets/bare/gitignore", :project, ".gitignore"},
-    {:text,   "phx_assets/app.css",        :project, "priv/static/css/app.css"},
-    {:append, "phx_assets/phoenix.css",    :project, "priv/static/css/app.css"},
-    {:text,   "phx_assets/bare/app.js",    :project, "priv/static/js/app.js"},
-    {:text,   "phx_assets/robots.txt",     :project, "priv/static/robots.txt"},
-  ]
-
   def prepare_project(%Project{app: app} = project) when not is_nil(app) do
     %Project{project | project_path: project.base_path}
     |> put_app()
