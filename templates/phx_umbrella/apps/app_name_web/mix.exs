@@ -39,7 +39,8 @@ defmodule <%= web_namespace %>.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},<%= if app_name != web_app_name do %>
      {:<%= app_name %>, in_umbrella: true},<% end %>
-     {:cowboy, "~> 1.0"}]
+     {:cowboy, "~> 1.0"},
+     {:std_json_io, github: "chvanikoff/std_json_io"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.<%= if ecto do %>

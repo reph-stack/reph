@@ -27,6 +27,11 @@ config :logger, :console,
 config :<%= web_app_name %>, :generators,
   context_app: <%= if app_name == web_app_name, do: false, else: ":#{app_name}" %>
 
+config :std_json_io,
+  pool_size: 10,
+  pool_max_overflow: 10,
+  script: "assets/node_modules/.bin/react-stdio"
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
