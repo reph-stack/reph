@@ -37,6 +37,7 @@ defmodule Reph.Web do
   ]
 
   template :react, [
+    {:eex,  "phx_assets/babelrc",                       :web, "assets/.babelrc"},
     {:eex,  "phx_assets/webpack.config.js",             :web, "assets/webpack.config.js"},
     {:text, "phx_assets/styles/index.less",             :web, "assets/styles/index.less"},
     {:text, "phx_assets/styles/app.less",               :web, "assets/styles/app.less"},

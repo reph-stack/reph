@@ -42,6 +42,7 @@ defmodule Reph.Single do
   ]
 
   template :react, [
+    {:eex,  "phx_assets/babelrc",                       :project, "assets/.babelrc"},
     {:eex,  "phx_assets/webpack.config.js",             :project, "assets/webpack.config.js"},
     {:text, "phx_assets/styles/index.less",             :project, "assets/styles/index.less"},
     {:text, "phx_assets/styles/app.less",               :project, "assets/styles/app.less"},
