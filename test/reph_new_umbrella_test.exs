@@ -104,7 +104,7 @@ defmodule Mix.Tasks.Reph.New.UmbrellaTest do
 
       # React
       assert_file web_path(@app, ".gitignore"), "/node_modules"
-      assert_file web_path(@app, "assets/webpack.config.js"), ~s("js/app.js": ["js/app"])
+      assert_file web_path(@app, "assets/webpack.config.js"), ~s(filename: "js/app.js")
       assert_file web_path(@app, "config/dev.exs"), fn file ->
         assert file =~ "watchers: [node:"
         assert file =~ "lib/#{@app}_web/views/.*(ex)"
@@ -113,10 +113,8 @@ defmodule Mix.Tasks.Reph.New.UmbrellaTest do
       assert_file web_path(@app, "assets/static/favicon.ico")
       assert_file web_path(@app, "assets/static/images/phoenix.png")
       assert_file web_path(@app, "assets/styles/app.less")
-      assert_file web_path(@app, "assets/js/app.js"),
-                  ~s[import socket from "./socket"]
-      assert_file web_path(@app, "assets/js/socket.js"),
-                  ~s[import {Socket} from "phoenix"]
+      assert_file web_path(@app, "assets/js/index.js"),
+                  ~s[import React from "react"]
 
       assert_file web_path(@app, "assets/package.json"), fn file ->
         assert file =~ ~s["file:../../../deps/phoenix"]
@@ -125,7 +123,7 @@ defmodule Mix.Tasks.Reph.New.UmbrellaTest do
 
       refute File.exists?(web_path(@app, "priv/static/styles/app.less"))
       refute File.exists?(web_path(@app, "priv/static/js/phoenix.js"))
-      refute File.exists?(web_path(@app, "priv/static/js/app.js"))
+      refute File.exists?(web_path(@app, "priv/static/js/index.js"))
 
       assert File.exists?(web_path(@app, "assets/vendor"))
 
@@ -408,15 +406,13 @@ defmodule Mix.Tasks.Reph.New.UmbrellaTest do
 
         # React
         assert_file "another/.gitignore", "/node_modules"
-        assert_file "another/assets/webpack.config.js", ~s("js/app.js": ["js/app"])
+        assert_file "another/assets/webpack.config.js", ~s(filename: "js/app.js")
         assert_file "another/config/dev.exs", "watchers: [node:"
         assert_file "another/assets/static/favicon.ico"
         assert_file "another/assets/static/images/phoenix.png"
         assert_file "another/assets/styles/app.less"
-        assert_file "another/assets/js/app.js",
-                    ~s[import socket from "./socket"]
-        assert_file "another/assets/js/socket.js",
-                    ~s[import {Socket} from "phoenix"]
+        assert_file "another/assets/js/index.js",
+                    ~s[import React from "react"]
 
         assert_file "another/assets/package.json", fn file ->
           assert file =~ ~s["file:../../../deps/phoenix"]
@@ -425,7 +421,7 @@ defmodule Mix.Tasks.Reph.New.UmbrellaTest do
 
         refute File.exists? "another/priv/static/less/app.less"
         refute File.exists? "another/priv/static/js/phoenix.js"
-        refute File.exists? "another/priv/static/js/app.js"
+        refute File.exists? "another/priv/static/js/index.js"
 
         assert File.exists?("another/assets/vendor")
 

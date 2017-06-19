@@ -69,7 +69,7 @@ defmodule Mix.Tasks.Reph.NewTest do
 
       # React
       assert_file "phx_blog/.gitignore", "/node_modules"
-      assert_file "phx_blog/assets/webpack.config.js", ~s("js/app.js": ["js/app"])
+      assert_file "phx_blog/assets/webpack.config.js", ~s(filename: "js/app.js")
       assert_file "phx_blog/config/dev.exs", fn file ->
         assert file =~ "watchers: [node:"
         assert file =~ "lib/phx_blog/web/views/.*(ex)"
@@ -78,10 +78,8 @@ defmodule Mix.Tasks.Reph.NewTest do
       assert_file "phx_blog/assets/static/favicon.ico"
       assert_file "phx_blog/assets/static/images/phoenix.png"
       assert_file "phx_blog/assets/styles/app.less"
-      assert_file "phx_blog/assets/js/app.js",
-                  ~s[import socket from "./socket"]
-      assert_file "phx_blog/assets/js/socket.js",
-                  ~s[import {Socket} from "phoenix"]
+      assert_file "phx_blog/assets/js/index.js",
+                  ~s[import React from "react"]
 
       assert_file "phx_blog/assets/package.json", fn file ->
         assert file =~ ~s["file:../deps/phoenix"]
@@ -90,7 +88,7 @@ defmodule Mix.Tasks.Reph.NewTest do
 
       refute File.exists? "phx_blog/priv/static/styles/app.less"
       refute File.exists? "phx_blog/priv/static/js/phoenix.js"
-      refute File.exists? "phx_blog/priv/static/js/app.js"
+      refute File.exists? "phx_blog/priv/static/js/index.js"
 
       assert File.exists?("phx_blog/assets/vendor")
 

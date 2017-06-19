@@ -4,6 +4,7 @@ defmodule Reph.Single do
   alias Reph.{Project}
 
   template :new, [
+    {:text, "phx_single/gitignore",                     :project, ".gitignore"},
     {:eex,  "phx_single/config/config.exs",             :project, "config/config.exs"},
     {:eex,  "phx_single/config/dev.exs",                :project, "config/dev.exs"},
     {:eex,  "phx_single/config/prod.exs",               :project, "config/prod.exs"},
@@ -41,16 +42,14 @@ defmodule Reph.Single do
   ]
 
   template :react, [
-    {:text, "phx_assets/react/gitignore",         :project, ".gitignore"},
-    {:eex,  "phx_assets/react/webpack.config.js", :project, "assets/webpack.config.js"},
+    {:eex,  "phx_assets/webpack.config.js",       :project, "assets/webpack.config.js"},
     {:text, "phx_assets/styles/index.less",       :project, "assets/styles/index.less"},
     {:text, "phx_assets/styles/app.less",         :project, "assets/styles/app.less"},
     {:text, "phx_assets/styles/phoenix.css",      :project, "assets/styles/phoenix.css"},
     {:text, "phx_assets/styles/bootstrap.css",    :project, "assets/styles/bootstrap.css"},
-    {:eex,  "phx_assets/react/app.js",            :project, "assets/js/app.js"},
-    {:eex,  "phx_assets/react/socket.js",         :project, "assets/js/socket.js"},
-    {:eex,  "phx_assets/react/package.json",      :project, "assets/package.json"},
-    {:text, "phx_assets/robots.txt",              :project, "assets/static/robots.txt"},
+    {:eex,  "phx_assets/js/index.js",             :project, "assets/js/index.js"},
+    {:eex,  "phx_assets/package.json",            :project, "assets/package.json"},
+    {:text, "phx_assets/static/robots.txt",       :project, "assets/static/robots.txt"},
     {:keep, "phx_assets/vendor",                  :project, "assets/vendor"},
   ]
 

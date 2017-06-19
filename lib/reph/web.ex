@@ -6,6 +6,7 @@ defmodule Reph.Web do
   @pre "phx_umbrella/apps/app_name_web"
 
   template :new, [
+    {:text, "phx_single/gitignore",                   :web, ".gitignore"},
     {:eex,  "#{@pre}/config/config.exs",              :web, "config/config.exs"},
     {:eex,  "#{@pre}/config/dev.exs",                 :web, "config/dev.exs"},
     {:eex,  "#{@pre}/config/prod.exs",                :web, "config/prod.exs"},
@@ -36,16 +37,14 @@ defmodule Reph.Web do
   ]
 
   template :react, [
-    {:text, "phx_assets/react/gitignore",         :web, ".gitignore"},
-    {:eex,  "phx_assets/react/webpack.config.js", :web, "assets/webpack.config.js"},
+    {:eex,  "phx_assets/webpack.config.js",       :web, "assets/webpack.config.js"},
     {:text, "phx_assets/styles/index.less",       :web, "assets/styles/index.less"},
     {:text, "phx_assets/styles/app.less",         :web, "assets/styles/app.less"},
     {:text, "phx_assets/styles/phoenix.css",      :web, "assets/styles/phoenix.css"},
     {:text, "phx_assets/styles/bootstrap.css",    :web, "assets/styles/bootstrap.css"},
-    {:eex,  "phx_assets/react/app.js",            :web, "assets/js/app.js"},
-    {:eex,  "phx_assets/react/socket.js",         :web, "assets/js/socket.js"},
-    {:eex,  "phx_assets/react/package.json",      :web, "assets/package.json"},
-    {:text, "phx_assets/robots.txt",              :web, "assets/static/robots.txt"},
+    {:eex,  "phx_assets/js/index.js",             :web, "assets/js/index.js"},
+    {:eex,  "phx_assets/package.json",            :web, "assets/package.json"},
+    {:text, "phx_assets/static/robots.txt",       :web, "assets/static/robots.txt"},
     {:keep, "phx_assets/vendor",                  :web, "assets/vendor"},
   ]
 
