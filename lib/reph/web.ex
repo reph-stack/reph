@@ -42,7 +42,6 @@ defmodule Reph.Web do
     {:text, "phx_assets/styles/index.less",             :web, "assets/styles/index.less"},
     {:text, "phx_assets/styles/app.less",               :web, "assets/styles/app.less"},
     {:text, "phx_assets/styles/phoenix.css",            :web, "assets/styles/phoenix.css"},
-    {:text, "phx_assets/styles/bootstrap.css",          :web, "assets/styles/bootstrap.css"},
     {:eex,  "phx_assets/js/index.js",                   :web, "assets/js/index.js"},
     {:eex,  "phx_assets/js/components/Header/index.js", :web, "assets/js/components/Header/index.js"},
     {:eex,  "phx_assets/js/components/Main/index.js",   :web, "assets/js/components/Main/index.js"},

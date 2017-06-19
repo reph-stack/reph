@@ -47,7 +47,6 @@ defmodule Reph.Single do
     {:text, "phx_assets/styles/index.less",             :project, "assets/styles/index.less"},
     {:text, "phx_assets/styles/app.less",               :project, "assets/styles/app.less"},
     {:text, "phx_assets/styles/phoenix.css",            :project, "assets/styles/phoenix.css"},
-    {:text, "phx_assets/styles/bootstrap.css",          :project, "assets/styles/bootstrap.css"},
     {:eex,  "phx_assets/js/index.js",                   :project, "assets/js/index.js"},
     {:eex,  "phx_assets/js/components/Header/index.js", :project, "assets/js/components/Header/index.js"},
     {:eex,  "phx_assets/js/components/Main/index.js",   :project, "assets/js/components/Main/index.js"},
