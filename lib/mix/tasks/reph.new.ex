@@ -59,7 +59,7 @@ defmodule Mix.Tasks.Reph.New do
   official [Elixir guide](http://elixir-lang.org/getting-started/mix-otp/dependencies-and-umbrella-apps.html#umbrella-projects)
   """
   use Mix.Task
-  alias Phx.New.{Generator, Project, Single, Umbrella, Web, Ecto}
+  alias Reph.New.{Generator, Project, Single, Umbrella, Web, Ecto}
 
   @version Mix.Project.config[:version]
   @shortdoc "Creates a new Phoenix v#{@version} application"

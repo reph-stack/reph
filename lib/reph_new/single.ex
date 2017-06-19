@@ -1,7 +1,7 @@
-defmodule Phx.New.Single do
+defmodule Reph.New.Single do
   @moduledoc false
-  use Phx.New.Generator
-  alias Phx.New.{Project}
+  use Reph.New.Generator
+  alias Reph.New.{Project}
 
   template :new, [
     {:eex,  "phx_single/config/config.exs",             :project, "config/config.exs"},

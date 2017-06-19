@@ -1,6 +1,6 @@
-defmodule Phx.New.Project do
+defmodule Reph.New.Project do
   @moduledoc false
-  alias Phx.New.Project
+  alias Reph.New.Project
 
   defstruct base_path: nil,
             app: nil,

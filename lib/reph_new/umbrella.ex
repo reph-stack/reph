@@ -1,7 +1,7 @@
-defmodule Phx.New.Umbrella do
+defmodule Reph.New.Umbrella do
   @moduledoc false
-  use Phx.New.Generator
-  alias Phx.New.{Ecto, Web, Project}
+  use Reph.New.Generator
+  alias Reph.New.{Ecto, Web, Project}
 
   template :new, [
     {:eex,  "phx_umbrella/gitignore",         :project, ".gitignore"},

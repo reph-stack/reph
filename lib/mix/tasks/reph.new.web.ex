@@ -1,4 +1,4 @@
-defmodule Mix.Tasks.Phx.New.Web do
+defmodule Mix.Tasks.Reph.New.Web do
   @moduledoc """
   Creates a new Phoenix web project within an umbrella project.
 
@@ -30,13 +30,13 @@ defmodule Mix.Tasks.Phx.New.Web do
   use Mix.Task
 
   def run([]) do
-    Mix.Tasks.Help.run(["phx.new.web"])
+    Mix.Tasks.Help.run(["reph.new.web"])
   end
   def run([path | _] = args) do
-    unless Phx.New.Generator.in_umbrella?(path) do
+    unless Reph.New.Generator.in_umbrella?(path) do
       Mix.raise "The web task can only be run within an umbrella's apps directory"
     end
 
-    Mix.Tasks.Reph.New.run(args, Phx.New.Web)
+    Mix.Tasks.Reph.New.run(args, Reph.New.Web)
   end
 end

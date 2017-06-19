@@ -1,6 +1,6 @@
 Code.require_file "mix_helper.exs", __DIR__
 
-defmodule Mix.Tasks.Phx.New.UmbrellaTest do
+defmodule Mix.Tasks.Reph.New.UmbrellaTest do
   use ExUnit.Case, async: true
   import MixHelper
 
@@ -350,7 +350,7 @@ defmodule Mix.Tasks.Phx.New.UmbrellaTest do
         for dir <- [cwd, umbrella_path] do
           File.cd!(dir, fn ->
             assert_raise Mix.Error, ~r"The ecto task can only be run within an umbrella's apps directory", fn ->
-              Mix.Tasks.Phx.New.Ecto.run(["valid"])
+              Mix.Tasks.Reph.New.Ecto.run(["valid"])
             end
           end)
         end
@@ -369,7 +369,7 @@ defmodule Mix.Tasks.Phx.New.UmbrellaTest do
         for dir <- [cwd, umbrella_path] do
           File.cd!(dir, fn ->
             assert_raise Mix.Error, ~r"The web task can only be run within an umbrella's apps directory", fn ->
-              Mix.Tasks.Phx.New.Web.run(["valid"])
+              Mix.Tasks.Reph.New.Web.run(["valid"])
             end
           end)
         end
@@ -384,7 +384,7 @@ defmodule Mix.Tasks.Phx.New.UmbrellaTest do
 
         File.cd!(Path.join(umbrella_path, "apps"))
         decline_prompt()
-        Mix.Tasks.Phx.New.Web.run(["another"])
+        Mix.Tasks.Reph.New.Web.run(["another"])
 
         assert_file "another/README.md"
         assert_file "another/mix.exs", fn file ->

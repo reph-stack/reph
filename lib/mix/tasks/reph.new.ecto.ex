@@ -1,4 +1,4 @@
-defmodule Mix.Tasks.Phx.New.Ecto do
+defmodule Mix.Tasks.Reph.New.Ecto do
   @moduledoc """
   Creates a new Ecto project within an umbrella project.
 
@@ -42,16 +42,16 @@ defmodule Mix.Tasks.Phx.New.Ecto do
   @shortdoc "Creates a new Ecto project within an umbrella project"
 
   use Mix.Task
-  import Phx.New.Generator
+  import Reph.New.Generator
 
   def run([]) do
-    Mix.Tasks.Help.run(["phx.new.ecto"])
+    Mix.Tasks.Help.run(["reph.new.ecto"])
   end
   def run([path | _] = args) do
     unless in_umbrella?(path) do
       Mix.raise "The ecto task can only be run within an umbrella's apps directory"
     end
 
-    Mix.Tasks.Reph.New.run(args ++ ["--ecto"], Phx.New.Ecto)
+    Mix.Tasks.Reph.New.run(args ++ ["--ecto"], Reph.New.Ecto)
   end
 end

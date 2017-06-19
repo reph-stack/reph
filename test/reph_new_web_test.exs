@@ -1,6 +1,6 @@
 Code.require_file "mix_helper.exs", __DIR__
 
-defmodule Mix.Tasks.Phx.New.WebTest do
+defmodule Mix.Tasks.Reph.New.WebTest do
   use ExUnit.Case
   import MixHelper
   import ExUnit.CaptureIO
@@ -16,7 +16,7 @@ defmodule Mix.Tasks.Phx.New.WebTest do
 
   test "new without args" do
     in_tmp_umbrella_project "new without args", fn ->
-      assert capture_io(fn -> Mix.Tasks.Phx.New.Web.run([]) end) =~
+      assert capture_io(fn -> Mix.Tasks.Reph.New.Web.run([]) end) =~
              "Creates a new Phoenix web project within an umbrella project."
     end
   end
@@ -24,14 +24,14 @@ defmodule Mix.Tasks.Phx.New.WebTest do
   test "new outside umbrella", config do
     in_tmp config.test, fn ->
       assert_raise Mix.Error, ~r"The web task can only be run within an umbrella's apps directory", fn ->
-        Mix.Tasks.Phx.New.Web.run ["007invalid"]
+        Mix.Tasks.Reph.New.Web.run ["007invalid"]
       end
     end
   end
 
   test "new with defaults" do
     in_tmp_umbrella_project "new with defaults", fn ->
-      Mix.Tasks.Phx.New.Web.run([@app_name])
+      Mix.Tasks.Reph.New.Web.run([@app_name])
 
       assert_file "#{@app_name}/config/config.exs", fn file ->
         assert file =~ "config :#{@app_name}, :generators,"
