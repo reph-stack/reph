@@ -1,5 +1,7 @@
 # Reph
 
+[About RePh](https://medium.com/@chvanikoff/reph-react-phoenix-app-scaffolding-made-easy-346cddc76838)
+
 Reph is an acronym for **RE**act + **PH**oenix stack. This library provides `reph.new` installer as an archive. It aims to replace `phx.new` for new projects, based on React/Phoenix stack, scaffolding.
 
 Some of the batteries included:
