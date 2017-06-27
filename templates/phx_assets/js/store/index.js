@@ -12,7 +12,7 @@ import WSActions from "actions/ws";
 
 
 export default function createStoreAndRouter(props) {
-  return (typeof winfow !== "undefined" && typeof window === "object")
+  return (typeof window !== "undefined" && typeof window === "object")
     ? createForBrowser()
     : createForServer(props);
 }
