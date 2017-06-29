@@ -2,26 +2,30 @@ defmodule <%= web_namespace %>.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :<%= web_app_name %>,
-     version: "0.0.1",
-     build_path: "../../_build",
-     config_path: "../../config/config.exs",
-     deps_path: "../../deps",
-     lockfile: "../../mix.lock",
-     elixir: "~> 1.4",
-     elixirc_paths: elixirc_paths(Mix.env),
-     compilers: [:phoenix, :gettext] ++ Mix.compilers,
-     start_permanent: Mix.env == :prod,
-     aliases: aliases(),
-     deps: deps()]
+    [
+      app: :<%= web_app_name %>,
+      version: "0.0.1",
+      build_path: "../../_build",
+      config_path: "../../config/config.exs",
+      deps_path: "../../deps",
+      lockfile: "../../mix.lock",
+      elixir: "~> 1.4",
+      elixirc_paths: elixirc_paths(Mix.env),
+      compilers: [:phoenix, :gettext] ++ Mix.compilers,
+      start_permanent: Mix.env == :prod,
+      aliases: aliases(),
+      deps: deps()
+    ]
   end
 
   # Configuration for the OTP application.
   #
   # Type `mix help compile.app` for more information.
   def application do
-    [mod: {<%= web_namespace %>.Application, []},
-     extra_applications: [:logger, :runtime_tools]]
+    [
+      mod: {<%= web_namespace %>.Application, []},
+      extra_applications: [:logger, :runtime_tools]
+    ]
   end
 
   # Specifies which paths to compile per environment.
@@ -32,15 +36,17 @@ defmodule <%= web_namespace %>.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [<%= phoenix_dep %>,
-     {:phoenix_pubsub, "~> 1.0"},<%= if ecto do %>
-     {:phoenix_ecto, "~> 3.2"},<% end %>
-     {:phoenix_html, "~> 2.6"},
-     {:phoenix_live_reload, "~> 1.0", only: :dev},
-     {:gettext, "~> 0.11"},<%= if app_name != web_app_name do %>
-     {:<%= app_name %>, in_umbrella: true},<% end %>
-     {:cowboy, "~> 1.0"},
-     {:std_json_io, github: "chvanikoff/std_json_io"}]
+    [
+      <%= phoenix_dep %>,
+      {:phoenix_pubsub, "~> 1.0"},<%= if ecto do %>
+      {:phoenix_ecto, "~> 3.2"},<% end %>
+      {:phoenix_html, "~> 2.6"},
+      {:phoenix_live_reload, "~> 1.0", only: :dev},
+      {:gettext, "~> 0.11"},<%= if app_name != web_app_name do %>
+      {:<%= app_name %>, in_umbrella: true},<% end %>
+      {:cowboy, "~> 1.0"},
+      {:std_json_io, github: "chvanikoff/std_json_io"}
+    ]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.<%= if ecto do %>
@@ -48,6 +54,8 @@ defmodule <%= web_namespace %>.Mixfile do
   #
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
-    [<%= if ecto do %>"test": ["ecto.create --quiet", "ecto.migrate", "test"]<% end %>]
+    [<%= if ecto do %>
+      "test": ["ecto.create --quiet", "ecto.migrate", "test"]
+    <% end %>]
   end
 end
