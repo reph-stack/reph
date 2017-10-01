@@ -21,8 +21,14 @@ defmodule Mix.Tasks.Reph.New do
     * `--module` - the name of the base module in
       the generated skeleton
 
-    * `--database` - specify the database adapter for ecto.
-      Values can be `postgres` or `mysql`. Defaults to `postgres`
+    * `--database` - specify the database adapter for Ecto. One of:
+
+        * `postgres` (https://github.com/elixir-ecto/postgrex)
+        * `mysql` (https://github.com/xerions/mariaex)
+        * `mssql` (https://github.com/findmypast-oss/mssqlex)
+
+      Please check the driver docs, between parentheses, for more information
+      and requirements. Defaults to "postgres".
 
     * `--no-ecto` - do not generate Ecto files.
 
@@ -53,7 +59,7 @@ defmodule Mix.Tasks.Reph.New do
       hello_umbrella/   Hello.Umbrella
         apps/
           hello/        Hello
-          hello_web/    Hello.Web
+          hello_web/    HelloWeb
 
   You can read more about umbrella projects using the
   official [Elixir guide](http://elixir-lang.org/getting-started/mix-otp/dependencies-and-umbrella-apps.html#umbrella-projects)
@@ -119,7 +125,7 @@ defmodule Mix.Tasks.Reph.New do
         maybe_cd(project.web_path, fn ->
           compile =
             case mix_pending do
-              [] -> Task.async(fn -> cmd("mix deps.compile") end)
+              [] -> Task.async(fn -> rebar_available?() && cmd("mix deps.compile") end)
               _  -> Task.async(fn -> :ok end)
             end
 
@@ -161,7 +167,15 @@ defmodule Mix.Tasks.Reph.New do
   end
 
   defp install_mix(install?) do
-    maybe_cmd "mix deps.get", true, install? && Code.ensure_loaded?(Hex)
+    maybe_cmd "mix deps.get", true, install? && hex_available?()
+  end
+
+  defp hex_available? do
+    Code.ensure_loaded?(Hex)
+  end
+
+  defp rebar_available? do
+    Mix.Rebar.rebar_cmd(:rebar) && Mix.Rebar.rebar_cmd(:rebar3)
   end
 
   defp print_node_info(_project, _gen) do

@@ -11,25 +11,26 @@ defmodule Reph.Single do
     {:eex,  "phx_single/config/prod.secret.exs",        :project, "config/prod.secret.exs"},
     {:eex,  "phx_single/config/test.exs",               :project, "config/test.exs"},
     {:eex,  "phx_single/lib/app_name/application.ex",   :project, "lib/:app/application.ex"},
-    {:eex,  "phx_web/channels/user_socket.ex",          :project, "lib/:app/web/channels/user_socket.ex"},
-    {:keep, "phx_web/controllers",                      :project, "lib/:app/web/controllers"},
-    {:eex,  "phx_web/views/error_helpers.ex",           :project, "lib/:app/web/views/error_helpers.ex"},
-    {:eex,  "phx_web/views/error_view.ex",              :project, "lib/:app/web/views/error_view.ex"},
-    {:eex,  "phx_web/endpoint.ex",                      :project, "lib/:app/web/endpoint.ex"},
-    {:eex,  "phx_web/router.ex",                        :project, "lib/:app/web/router.ex"},
-    {:eex,  "phx_single/lib/app_name/web/web.ex",       :project, "lib/:app/web/web.ex"},
+    {:eex,  "phx_single/lib/app_name.ex",               :project, "lib/:app.ex"},
+    {:eex,  "phx_web/channels/user_socket.ex",          :project, "lib/:lib_web_name/channels/user_socket.ex"},
+    {:keep, "phx_web/controllers",                      :project, "lib/:lib_web_name/controllers"},
+    {:eex,  "phx_web/views/error_helpers.ex",           :project, "lib/:lib_web_name/views/error_helpers.ex"},
+    {:eex,  "phx_web/views/error_view.ex",              :project, "lib/:lib_web_name/views/error_view.ex"},
+    {:eex,  "phx_web/endpoint.ex",                      :project, "lib/:lib_web_name/endpoint.ex"},
+    {:eex,  "phx_web/router.ex",                        :project, "lib/:lib_web_name/router.ex"},
+    {:eex,  "phx_single/lib/app_name_web.ex",           :project, "lib/:lib_web_name.ex"},
     {:eex,  "phx_single/mix.exs",                       :project, "mix.exs"},
     {:eex,  "phx_single/README.md",                     :project, "README.md"},
     {:eex,  "phx_test/support/channel_case.ex",         :project, "test/support/channel_case.ex"},
     {:eex,  "phx_test/support/conn_case.ex",            :project, "test/support/conn_case.ex"},
     {:eex,  "phx_single/test/test_helper.exs",          :project, "test/test_helper.exs"},
-    {:keep, "phx_test/channels",                        :project, "test/:app/web/channels"},
-    {:keep, "phx_test/controllers",                     :project, "test/:app/web/controllers"},
-    {:eex,  "phx_test/views/error_view_test.exs",       :project, "test/:app/web/views/error_view_test.exs"},
+    {:keep, "phx_test/channels",                        :project, "test/:lib_web_name/channels"},
+    {:keep, "phx_test/controllers",                     :project, "test/:lib_web_name/controllers"},
+    {:eex,  "phx_test/views/error_view_test.exs",       :project, "test/:lib_web_name/views/error_view_test.exs"}
   ]
 
   template :gettext, [
-    {:eex,  "phx_gettext/gettext.ex",               :project, "lib/:app/web/gettext.ex"},
+    {:eex,  "phx_gettext/gettext.ex",               :project, "lib/:lib_web_name/gettext.ex"},
     {:eex,  "phx_gettext/en/LC_MESSAGES/errors.po", :project, "priv/gettext/en/LC_MESSAGES/errors.po"},
     {:eex,  "phx_gettext/errors.pot",               :project, "priv/gettext/errors.pot"}
   ]
@@ -38,7 +39,7 @@ defmodule Reph.Single do
     {:eex,  "phx_ecto/repo.ex",              :project, "lib/:app/repo.ex"},
     {:keep, "phx_ecto/priv/repo/migrations", :project, "priv/repo/migrations"},
     {:eex,  "phx_ecto/seeds.exs",            :project, "priv/repo/seeds.exs"},
-    {:eex,  "phx_ecto/data_case.ex",         :project, "test/support/data_case.ex"},
+    {:eex,  "phx_ecto/data_case.ex",         :project, "test/support/data_case.ex"}
   ]
 
   template :react, [
@@ -59,18 +60,18 @@ defmodule Reph.Single do
     {:eex,  "phx_assets/js/store/index.js",             :project, "assets/js/store/index.js"},
     {:eex,  "phx_assets/package.json",                  :project, "assets/package.json"},
     {:text, "phx_assets/static/robots.txt",             :project, "assets/static/robots.txt"},
-    {:keep, "phx_assets/vendor",                        :project, "assets/vendor"},
+    {:keep, "phx_assets/vendor",                        :project, "assets/vendor"}
   ]
 
   template :html, [
-    {:eex, "phx_web/controllers/react_controller.ex",        :project, "lib/:app/web/controllers/react_controller.ex"},
-    {:eex, "phx_web/templates/layout/app.html.eex",          :project, "lib/:app/web/templates/layout/app.html.eex"},
-    {:eex, "phx_web/templates/react/index.html.eex",         :project, "lib/:app/web/templates/react/index.html.eex"},
-    {:eex, "phx_web/views/layout_view.ex",                   :project, "lib/:app/web/views/layout_view.ex"},
-    {:eex, "phx_web/views/react_view.ex",                    :project, "lib/:app/web/views/react_view.ex"},
-    {:eex, "phx_test/controllers/react_controller_test.exs", :project, "test/:app/web/controllers/react_controller_test.exs"},
-    {:eex, "phx_test/views/layout_view_test.exs",            :project, "test/:app/web/views/layout_view_test.exs"},
-    {:eex, "phx_test/views/react_view_test.exs",             :project, "test/:app/web/views/react_view_test.exs"},
+    {:eex, "phx_web/controllers/react_controller.ex",         :project, "lib/:lib_web_name/controllers/react_controller.ex"},
+    {:eex, "phx_web/templates/layout/app.html.eex",          :project, "lib/:lib_web_name/templates/layout/app.html.eex"},
+    {:eex, "phx_web/templates/react/index.html.eex",          :project, "lib/:lib_web_name/templates/react/index.html.eex"},
+    {:eex, "phx_web/views/layout_view.ex",                   :project, "lib/:lib_web_name/views/layout_view.ex"},
+    {:eex, "phx_web/views/react_view.ex",                     :project, "lib/:lib_web_name/views/react_view.ex"},
+    {:eex, "phx_test/controllers/react_controller_test.exs",  :project, "test/:lib_web_name/controllers/react_controller_test.exs"},
+    {:eex, "phx_test/views/layout_view_test.exs",            :project, "test/:lib_web_name/views/layout_view_test.exs"},
+    {:eex, "phx_test/views/react_view_test.exs",              :project, "test/:lib_web_name/views/react_view_test.exs"}
   ]
 
   def prepare_project(%Project{app: app} = project) when not is_nil(app) do
@@ -95,7 +96,8 @@ defmodule Reph.Single do
   defp put_web_app(%Project{app: app} = project) do
     %Project{project |
              web_app: app,
-             web_namespace: Module.concat(project.root_mod, Web),
+             lib_web_name: "#{app}_web",
+             web_namespace: Module.concat(["#{project.root_mod}Web"]),
              web_path: project.project_path}
   end
 

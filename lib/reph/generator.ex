@@ -7,7 +7,7 @@ defmodule Reph.Generator do
   @callback generate(Project.t) :: Project.t
 
   @phoenix_path "deps/phoenix"
-  @phoenix_dep ~s[{:phoenix, "~> 1.3.0-rc"}]
+  @phoenix_dep ~s[{:phoenix, "~> 1.3.0"}]
 
   defmacro __using__(_env) do
     quote do
@@ -102,6 +102,7 @@ defmodule Reph.Generator do
       app_module: inspect(project.app_mod),
       root_app_name: project.root_app,
       root_app_module: inspect(project.root_mod),
+      lib_web_name: project.lib_web_name,
       web_app_name: project.web_app,
       endpoint_module: inspect(Module.concat(project.web_namespace, Endpoint)),
       web_namespace: inspect(project.web_namespace),
@@ -119,7 +120,6 @@ defmodule Reph.Generator do
       adapter_app: adapter_app,
       adapter_module: adapter_module,
       adapter_config: adapter_config,
-      hex?: Code.ensure_loaded?(Hex),
       generators: generators(adapter_config),
       namespaced?: namespaced?(project)]
 
@@ -168,6 +168,9 @@ defmodule Reph.Generator do
   end
   defp get_ecto_adapter("postgres", app, module) do
     {:postgrex, Ecto.Adapters.Postgres, db_config(app, module, "postgres", "postgres")}
+  end
+  defp get_ecto_adapter("mssql", app, module) do
+    {:mssql_ecto, MssqlEcto, db_config(app, module, "sa", "")}
   end
   defp get_ecto_adapter(db, _app, _mod) do
     Mix.raise "Unknown database #{inspect db}"

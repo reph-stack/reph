@@ -5,7 +5,7 @@ defmodule Reph.Mixfile do
     [
       app: :reph,
       start_permanent: Mix.env == :prod,
-      version: "0.1.2",
+      version: "0.1.3",
       elixir: "~> 1.3 or ~> 1.4"
     ]
   end
